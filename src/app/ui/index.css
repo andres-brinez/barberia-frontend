@@ -1,0 +1,41 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+/* Fuentes personalizadas (si las tienes). Si no, Tailwind usa fuentes del sistema.
+   Para este ejemplo, usaremos fuentes del sistema por simplicidad, pero si tuvieras
+   una fuente personalizada, la importarías aquí, por ejemplo:
+   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+*/
+
+/* Variables CSS para los colores principales del diseño, si no los defines en tailwind.config.js */
+:root {
+    --barber-primary-color: #D28C4B;
+    /* Naranja/marrón del logo y botón */
+    --barber-text-dark: #333333;
+    /* Texto oscuro */
+    --barber-text-light: #666666;
+    /* Texto gris claro */
+    --barber-background-light: #F5F5F5;
+    /* Fondo general claro */
+    --barber-divider-color: #E0E0E0;
+    /* Línea del separador */
+}
+
+/* Estilos base para el cuerpo */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Puedes cambiar por la fuente deseada */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--barber-background-light);
+    /* Fondo general claro */
+}
+
+/* Asegúrate de que #root ocupa toda la altura para el diseño de pantalla completa */
+#root {
+    min-height: 100vh;
+    display: flex;
+    width: 100%;
+}
