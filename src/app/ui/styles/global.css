@@ -1,0 +1,53 @@
+/* src/styles/global.css */
+
+/* Importar la fuente GeistSans desde Fontsource CDN */
+/* Esto importará todos los pesos y estilos disponibles por defecto */
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.2.5/index.min.css');
+
+
+/* Reset básico para el navegador */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Variables CSS para los colores principales del diseño */
+:root {
+    --barber-error-color: #EF4444; /* Rojo vibrante para mensajes de error */
+
+  --barber-primary-color: #cb6d00; /* Naranja/marrón del logo y botón */
+  --barber-text-dark: #190700; /* Texto oscuro (para títulos, etc.) */
+  --barber-text-light: #3f4155; /* Texto gris claro (para descripciones, labels) */
+  --barber-background-light: #F5F5F5; /* Fondo general de la página */
+  --barber-gray-left: #615c5c; /* El gris oscuro de la sección izquierda */
+  --barber-divider-color: #E0E0E0; /* Línea del separador */
+  --google-red: #EA4335; /* Color para el icono de Google */
+  --google-blue: #4285F4; /* Color azul de Google */
+  --google-green: #34A853; /* Color verde de Google */
+  --google-yellow: #FBBC05; /* Color amarillo de Google */
+  --border-color-input: #DDD; /* Borde de inputs y botón de Google */
+  --shadow-color-sm: rgba(0, 0, 0, 0.05); /* Sombra pequeña */
+  --shadow-color-md: rgba(0, 0, 0, 0.1); /* Sombra mediana */
+  --shadow-color-xl: rgba(0, 0, 0, 0.2); /* Sombra grande (para el contenedor del formulario) */
+  --transition-speed-fast: 0.15s;
+  --transition-speed-normal: 0.3s;
+}
+
+/* Estilos base para el cuerpo y el contenedor principal de la aplicación */
+html, body, #root {
+  min-height: 100vh;
+  margin: 0;
+  /* Aplicamos GeistSans como la fuente principal */
+  font-family: 'Geist Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--barber-background-light);
+}
+
+#root {
+  display: flex;
+  width: 100%;
+}

@@ -1,0 +1,303 @@
+/* src/pages/LoginPage/LoginPage.css */
+
+/* Contenedor Principal de la Página de Login (ahora <main>) */
+.login-page-main {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Panel Izquierdo (ahora <aside>) */
+.left-panel {
+  flex: 1; /* Ocupa la mitad del ancho disponible */
+  background-color: var(--barber-gray-left);
+  display: none; /* Oculto por defecto en pantallas pequeñas */
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; /* Espaciado interno */
+}
+
+/* Media query para mostrar el panel izquierdo en pantallas grandes */
+@media (min-width: 1024px) { /* Similar a 'lg' en Tailwind */
+  .left-panel {
+    display: flex; /* Mostrar como flexbox */
+  }
+}
+
+.loader-placeholder {
+  width: 10rem; /* Ancho fijo del círculo de carga */
+  height: 10rem; /* Altura fija del círculo de carga */
+  border-radius: 50%; /* Hacerlo un círculo */
+  border: 4px solid #666; /* Borde del círculo (gris medio) */
+  border-top-color: transparent; /* Parte superior transparente para el efecto de giro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spin 1s linear infinite; /* Animación de giro */
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loader-icon {
+  width: 6rem; /* Tamaño del icono SVG dentro del círculo */
+  height: 6rem;
+  color: #888; /* Color del icono (gris más claro) */
+}
+
+/* Panel Derecho (ahora <section>) */
+.right-panel {
+  flex: 1; /* Ocupa la otra mitad del ancho disponible */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white; /* Fondo blanco */
+  padding: 3rem; /* Padding base para todos los tamaños */
+  box-shadow: 0 4px 12px var(--shadow-color-xl); /* Sombra para el contenedor principal blanco */
+  border-radius: 0.5rem; /* Bordes redondeados sutiles */
+  margin: 1rem; /* Pequeño margen para que la sombra sea visible en móviles */
+}
+
+/* Responsive padding y márgenes para el panel derecho */
+@media (min-width: 640px) { /* sm breakpoint */
+  .right-panel {
+    padding: 4rem;
+  }
+}
+@media (min-width: 768px) { /* md breakpoint */
+  .right-panel {
+    padding: 5rem;
+  }
+}
+@media (min-width: 1024px) { /* lg breakpoint */
+  .right-panel {
+    padding: 6rem;
+    margin: 0; /* Sin margen en desktop, ya que el diseño es full width */
+    border-radius: 0; /* Quitar redondeado en desktop si quieres que se pegue a la izquierda */
+  }
+}
+
+.form-content-wrapper {
+  width: 100%;
+  max-width: 28rem; /* Ancho máximo del contenido del formulario (448px) */
+}
+
+/* Nuevo contenedor para los títulos y descripción */
+.text-header-group {
+  margin-bottom: 2rem; /* Espacio para separar de los campos de formulario */
+}
+
+/* Títulos y Descripciones (AHORA SIEMPRE CENTRADOS) */
+.main-title {
+  font-size: 2.2rem; /* ~40px */
+  font-weight: 800; /* Extra bold */
+  color: var(--barber-primary-color);
+  margin-bottom: 0.75rem; /* Margen inferior */
+  text-align: center; /* Siempre centrado */
+}
+
+.sub-title {
+  font-size: 1.5rem; /* ~32px */
+  font-weight: 700; /* Bold */
+  color: var(--barber-text-dark);
+  margin-bottom: 0.5rem;
+  text-align: center; /* Siempre centrado */
+}
+
+.description {
+  color: var(--barber-text-light);
+  /* El margin-bottom ya está en .text-header-group */
+  text-align: center; /* Siempre centrado */
+}
+
+/* Formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Espacio entre los grupos de formulario */
+}
+
+/* Estilos para <fieldset> (que usa .form-group) */
+.form-group {
+  border: none; /* Eliminar el borde por defecto de fieldset */
+  padding: 0; /* Eliminar el padding por defecto de fieldset */
+  margin: 0; /* Asegurar que no tenga margen extra */
+}
+
+/* Clase para ocultar visualmente contenido (solo para lectores de pantalla) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+  color: var(--barber-text-light);
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem; /* Padding interno */
+  border: 1px solid var(--border-color-input);
+  border-radius: 0.375rem; /* Bordes redondeados */
+  box-shadow: 0 1px 2px var(--shadow-color-sm); /* Sombra sutil */
+  outline: none; /* Eliminar el outline por defecto */
+  transition: border-color var(--transition-speed-normal) ease, box-shadow var(--transition-speed-normal) ease;
+}
+
+.form-input:focus {
+  border-color: var(--barber-primary-color); /* Borde naranja al enfocar */
+  box-shadow: 0 0 0 3px rgba(210, 140, 75, 0.2); /* Sombra tipo "ring" al enfocar */
+}
+
+.forgot-password {
+  text-align: right;
+  margin-top: 0.5rem;
+
+}
+
+.forgot-password a {
+  color: var(--barber-primary-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* Botón de Iniciar Sesión */
+.login-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--barber-primary-color);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px var(--shadow-color-md);
+  transition: background-color var(--transition-speed-normal) ease;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  height: 2.75rem; /* Altura fija para coincidir con el de Google */
+}
+
+.login-button:hover {
+  background-color: #C37A3C; /* Un naranja ligeramente más oscuro */
+}
+
+.login-button:focus-visible { /* Usar focus-visible para accesibilidad */
+  box-shadow: 0 0 0 3px rgba(210, 140, 75, 0.4); /* Anillo de enfoque */
+}
+
+/* Separador "O CONTINÚA CON" */
+.divider {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem; /* Más margen arriba */
+  margin-bottom: 2rem; /* Más margen abajo */
+}
+
+.divider-line {
+  flex-grow: 1;
+  border-top: 1px solid var(--barber-divider-color);
+}
+
+.divider-text {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 0.875rem;
+  color: var(--barber-text-light);
+  white-space: nowrap;
+}
+
+/* Estilos para el botón de Google Sign-In (GSI) */
+.gsi-material-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 2.75rem;
+  padding: 0 1rem;
+  background-color: white;
+  border: 1px solid var(--border-color-input); /* Borde igual a los inputs */
+  border-radius: 0.25rem; /* 4px, ligeramente menos redondeado que otros */
+  box-shadow: 0 1px 2px var(--shadow-color-sm);
+  color: var(--barber-text-dark);
+  font-family: 'Roboto', sans-serif; /* Google usa Roboto */
+  font-size: 1rem; /* 16px */
+  font-weight: 500; /* Medium */
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color var(--transition-speed-fast) ease, box-shadow var(--transition-speed-fast) ease;
+  outline: none;
+}
+
+.gsi-material-button:hover {
+  background-color: #F8F8F8; /* Un gris muy sutil al hover */
+  box-shadow: 0 1px 3px var(--shadow-color-md); /* Sombra un poco más pronunciada */
+}
+
+.gsi-material-button:focus-visible {
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.5); /* Anillo azul de Google al enfocar */
+}
+
+.gsi-material-button-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.gsi-material-button-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.gsi-material-button-icon {
+  height: 1.1rem; /* Altura de 18px para el icono */
+  width: 1.1rem; /* Ancho de 18px */
+  margin-right: 0.625rem; /* 10px, espaciado entre icono y texto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gsi-material-button-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gsi-material-button-contents {
+  /* No se necesita mucho aquí */
+}
+
+.error-message {
+  color: var(--barber-error-color); /* Usamos la nueva variable de color rojo */
+  font-size: 0.875rem; /* Tamaño de fuente más pequeño (14px) */
+  font-weight: 500; /* Un poco de peso para que resalte */
+  margin-top: 0.5rem; /* Margen superior para separarlo del elemento anterior (ej. input) */
+  text-align: left; /* Generalmente los mensajes de error se alinean a la izquierda */
+  padding-left: 0.25rem; /* Pequeño padding si el texto está muy pegado al borde */
+}
