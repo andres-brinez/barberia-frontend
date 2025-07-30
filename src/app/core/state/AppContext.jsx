@@ -6,7 +6,7 @@ const initialState = {
   token: "",
   email: "",
   userName: "",
-  roles: [],
+  rol: "",
   
 };
 
@@ -20,7 +20,7 @@ const AppContext = createContext({
 const reducer = (state, action) => {
   switch (action.type) {
     case "USER_LOGGED":
-      return { ...state, isUserLogged: true, email: action.payload.email, userName: action.payload.userName, roles: action.payload.roles, token: action.payload.token };
+      return { ...state, isUserLogged: true, email: action.payload.email, userName: action.payload.userName, rol: action.payload.roles, token: action.payload.token };
     case "USER_LOGGED_OUT":
       return { ...state, isUserLogged: false, userName: "", roles: [], email: "", token: "" };
     

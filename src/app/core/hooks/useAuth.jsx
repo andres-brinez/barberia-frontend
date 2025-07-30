@@ -13,19 +13,19 @@ export const useAuthLogin = () => {
 
 
     const authenticate = (credentials) => authServiceLogin(credentials).then((response) => {
-        const { token, email, userName, roles } = response;
+        const { token, email, username, roles } = response;
 
         dispatch({
             type: "USER_LOGGED",
             payload: {
                 token: token,
                 email: email,
-                userName: userName,
+                userName: username,
                 roles: roles,
             },
         });
 
-        navigate('/home'); // Redirige a la página de inicio después del login exitoso
+        navigate('/dashboard'); // Redirige a la página de inicio después del login exitoso
 
 
         setIsError(false);

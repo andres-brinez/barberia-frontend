@@ -1,5 +1,5 @@
 // src/components/layout/Sidebar/Sidebar.jsx
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './Sidebar.css';
 
@@ -7,6 +7,7 @@ import './Sidebar.css';
 import {
   ChartBarIcon, UsersIcon, CalendarIcon, CogIcon, DocumentTextIcon, ChartPieIcon,UserGroupIcon 
 } from '@heroicons/react/24/outline'; 
+import { AppContext } from '../../../core/state/AppContext';
 
 function Sidebar() {
   const navItems = [
@@ -17,6 +18,9 @@ function Sidebar() {
     { name: 'Servicios', icon: <DocumentTextIcon />, path: '/dashboard/servicios' },
     { name: 'Configuración', icon: <CogIcon />, path: '/dashboard/configuracion' },
   ];
+
+   const {state} = useContext(AppContext)
+  
 
   return (
     <aside className="sidebar">
@@ -50,8 +54,8 @@ function Sidebar() {
       <div className="sidebar-user-info">
         <div className="user-avatar">A</div>
         <div className="user-details">
-          <p className="user-name">Admin</p>
-          <p className="user-email">admin@barbershop.com</p>
+          <p className="user-name">{state.userName}</p>
+          <p className="user-email">{state.email}</p>
         </div>
         
       </div>

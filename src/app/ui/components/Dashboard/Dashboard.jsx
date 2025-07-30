@@ -1,24 +1,15 @@
 // src/components/layout/MainContent/MainContent.jsx
-import React from 'react';
+import React, { useContext } from 'react';
 import './Dashboard.css';
-
-// Ya NO importamos los iconos outline de @heroicons/react/24/outline aquí para Actividad Reciente
-// import {
-//   DocumentTextIcon as DocumentOutlineIcon,
-//   UserIcon as UserOutlineIcon,
-//   CheckCircleIcon as CheckOutlineIcon,
-//   PlusCircleIcon as PlusOutlineIcon
-// } from '@heroicons/react/24/outline';
-
-// Ya NO importamos los iconos solid de @heroicons/react/24/solid aquí para Acciones Rápidas
-// import {
-//   CalendarDaysIcon as CalendarSolidIcon,
-//   UserPlusIcon as UserPlusSolidIcon,
-//   Cog6ToothIcon as CogSolidIcon
-// } from '@heroicons/react/24/solid';
+import { AppContext } from '../../../core/state/AppContext';
 
 
 function Dashboard() {
+
+  const {state} = useContext(AppContext)
+
+  console.log("Estado del contexto:", state);
+
   return (
     <main className="main-content">
       <div className="main-content-header-section">
@@ -31,12 +22,12 @@ function Dashboard() {
         <div className="stats-card">
           <div className="card-header">
             <span>Total Clientes</span>
-                        <span className="card-header-emoji " style={{paddingBottom: '3px'}}>👥</span> {/* Emoji para Total Clientes */}
+            <span className="card-header-emoji " style={{ paddingBottom: '3px' }}>👥</span> {/* Emoji para Total Clientes */}
 
           </div>
           <div className="card-value">1,234</div>
           <div className="card-trend positive">+12% desde el mes pasado</div>
-          
+
         </div>
         <div className="stats-card">
           <div className="card-header">
