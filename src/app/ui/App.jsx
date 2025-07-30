@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'; // Import
 
 // Importa tus componentes de página
 import LoginPage from './pages/LoginPage/LoginPage';
-import HomePage from './pages/HomePage/HomePage'; // Importa la nueva HomePage
+import { DashboardLayout } from './layouts/DashboardLayout';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -14,8 +15,10 @@ function App() {
 
       <Routes>
         
-        {/* path="/" renderiza HomePage cuando la URL es la raíz */}
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/dashboard" element={<DashboardLayout />} >
+          <Route index element={<Dashboard />} /> {/* Renderiza Dashboard por defecto en /dashboard */}
+        </Route>
+
         {/* path="/login" renderiza LoginPage cuando la URL es /login */}
         <Route path="/login" element={<LoginPage />} />
 
