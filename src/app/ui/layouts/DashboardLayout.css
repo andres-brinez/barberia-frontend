@@ -1,0 +1,74 @@
+/* src/pages/Dashboard/Dashboard.css */
+
+.dashboard-layout {
+  display: grid;
+  /* Define las columnas:
+     - 260px para el sidebar fijo
+     - 1fr para el resto del contenido principal */
+  grid-template-columns: 260px 1fr;
+
+  /* Define las filas:
+     - auto para la altura del header (se ajusta a su contenido)
+     - 1fr para el resto del MainContent (ocupa el espacio restante) */
+  grid-template-rows: auto 1fr; /* Nueva: Dos filas */
+
+  min-height: 100vh; /* Asegura que el layout ocupe toda la altura de la vista */
+  width: 100%; /* Ocupa todo el ancho */
+  background-color: var(--dashboard-bg-content); /* Fondo general del dashboard */
+}
+
+/* Posicionamiento de los componentes en el Grid */
+.sidebar {
+  grid-column: 1; /* Sidebar en la primera columna */
+  grid-row: 1 / span 2; /* Sidebar ocupa la primera y segunda fila (toda la altura) */
+  /* Mantener estilos de Sidebar.css para el resto */
+  position: sticky; /* Asegura que se mantenga fijo al hacer scroll */
+  top: 0;
+  height: 100vh; /* Y que ocupe toda la altura */
+  overflow-y: auto; /* Permite scroll si su contenido es largo */
+}
+
+.main-content-header { /* Clase del componente Header */
+  grid-column: 2; /* Header en la segunda columna */
+  grid-row: 1; /* Header en la primera fila */
+  /* Mantener estilos de Header.css para el resto */
+}
+
+.main-content { /* Clase del componente MainContent */
+  grid-column: 2; /* MainContent en la segunda columna */
+  grid-row: 2; /* MainContent en la segunda fila */
+  /* Mantener estilos de MainContent.css para el resto */
+  overflow-y: auto; /* Permite scroll si el contenido es largo */
+}
+
+/* Responsive para el Dashboard Layout */
+@media (max-width: 768px) { /* Ejemplo para tablets y móviles */
+  .dashboard-layout {
+    grid-template-columns: 1fr; /* Una sola columna en móviles */
+    grid-template-rows: auto auto 1fr; /* Sidebar (auto), Header (auto), MainContent (1fr) */
+  }
+
+  .sidebar {
+    grid-column: 1;
+    grid-row: 1; /* Sidebar en la primera fila */
+    width: 100%; /* Ocupa todo el ancho */
+    height: auto; /* Altura automática */
+    position: relative; /* Deja de ser sticky en móviles */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra inferior */
+    padding-bottom: 0.5rem; /* Un poco menos de padding al final */
+  }
+
+  .main-content-header {
+    grid-column: 1;
+    grid-row: 2; /* Header en la segunda fila */
+    padding: 1rem; /* Menos padding en móviles */
+    margin-bottom: 0; /* Sin margen inferior, lo manejará el MainContent */
+    border-radius: 0; /* Sin bordes redondeados si ocupa todo el ancho */
+  }
+
+  .main-content {
+    grid-column: 1;
+    grid-row: 3; /* MainContent en la tercera fila */
+    padding: 1rem; /* Menos padding en móviles */
+  }
+}

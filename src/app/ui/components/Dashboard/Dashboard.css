@@ -1,0 +1,274 @@
+/* src/components/layout/MainContent/MainContent.css */
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: var(--dashboard-bg-content);
+  overflow-y: auto;
+}
+
+/* Sección del Header DENTRO de MainContent */
+.main-content-header-section {
+  margin-bottom: 2rem; /* Espacio debajo de este header */
+}
+
+.dashboard-title-main { /* Título "Dashboard" */
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--barber-text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-subtitle-main { /* Subtítulo "Bienvenido..." */
+  font-size: 0.95rem;
+  color: var(--barber-text-light);
+}
+
+
+/* Diseño de la Rejilla del Dashboard (Grid) - sin cambios mayores */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .activity-section {
+    grid-column: span 2;
+  }
+  .quick-actions-section {
+    grid-column: span 2;
+  }
+}
+
+/* Estilos de las Tarjetas de Estadísticas (sin cambios) */
+.stats-card {
+  background-color: var(--dashboard-card-bg);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-color-sm);
+  border: 1px solid var(--dashboard-border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  font-size: 0.9rem;
+  color: var(--barber-text-light);
+  margin-bottom: 0.5rem;
+  display: flex ;
+  justify-content: space-between;
+  align-items: center;
+  /* border: solid 1px red; */
+}
+
+.card-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--barber-text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.card-trend {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.card-trend.positive {
+  color: var(--dashboard-accent-green);
+}
+
+.card-trend.negative {
+  color: var(--dashboard-accent-red);
+}
+
+
+/* Sección de Actividad Reciente (sin cambios mayores, solo el contenido) */
+.activity-section {
+  background-color: var(--dashboard-card-bg);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-color-sm);
+  border: 1px solid var(--dashboard-border-color);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--barber-text-dark);
+  margin-bottom: 1.5rem;
+}
+
+.activity-list {
+  /* Contenedor para los ítems de actividad */
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--dashboard-border-color);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.activity-details {
+  flex-grow: 1;
+}
+
+.activity-description {
+  font-size: 0.95rem;
+  color: var(--barber-text-dark);
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.activity-time {
+  font-size: 0.8rem;
+  color: var(--barber-text-light);
+}
+
+.activity-tag {
+  background-color: var(--dashboard-bg-content);
+  color: var(--barber-text-light);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 01rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* Sección de Acciones Rápidas (Nuevos botones y estilos) */
+.quick-actions-section {
+  background-color: var(--dashboard-card-bg);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-color-sm);
+  border: 1px solid var(--dashboard-border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.action-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background-color: var(--dashboard-bg-content);
+  border: 1px solid var(--dashboard-border-color);
+  border-radius: 0.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition-speed-fast) ease, box-shadow var(--transition-speed-fast) ease;
+  outline: none;
+}
+
+.action-button:hover {
+  background-color: #e5e7eb;
+  box-shadow: var(--shadow-color-sm);
+}
+
+.action-button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(109, 114, 124, 0.4);
+}
+
+/* Estilos para los nuevos botones de acciones rápidas */
+.action-button.green-button {
+  background-color: var(--dashboard-accent-green);
+  color: white;
+  border-color: var(--dashboard-accent-green);
+}
+
+.action-button.green-button .action-icon,
+.action-button.green-button .action-title,
+.action-button.green-button .action-subtitle {
+  color: white;
+}
+
+.action-button.blue-button { /* Nuevo botón para "Nuevo Usuario" */
+  background-color: #3B82F6; /* Un azul de ejemplo */
+  color: white;
+  border-color: #3B82F6;
+}
+.action-button.blue-button .action-icon,
+.action-button.blue-button .action-title,
+.action-button.blue-button .action-subtitle {
+  color: white;
+}
+
+.action-button.gray-button { /* Nuevo botón para "Configuración" */
+  background-color: #E5E7EB; /* Un gris más oscuro para el fondo */
+  color: var(--barber-text-dark); /* Color de texto oscuro */
+  border-color: #D1D5DB; /* Un borde ligeramente más oscuro */
+}
+.action-button.gray-button .action-icon {
+  color: var(--dashboard-icon-color); /* Color de icono para el gris */
+}
+
+.action-icon {
+  font-size: 1.75rem;
+  margin-right: 1rem;
+  color: var(--dashboard-icon-color);
+  flex-shrink: 0;
+}
+
+.action-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--barber-text-dark);
+  margin-bottom: 0.2rem;
+}
+
+.action-subtitle {
+  font-size: 0.85rem;
+  color: var(--barber-text-light);
+}
+
+/* Responsive para el Contenido Principal (sin cambios mayores) */
+@media (max-width: 640px) {
+  .main-content {
+    padding: 1rem;
+  }
+  .main-content-header-section {
+    margin-bottom: 1.5rem;
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .dashboard-title-main {
+    font-size: 1.75rem;
+  }
+  .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .stats-card .card-value {
+    font-size: 2rem;
+  }
+  .activity-item {
+    flex-wrap: wrap;
+  }
+  .activity-tag {
+    margin-top: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+}

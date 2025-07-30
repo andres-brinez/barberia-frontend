@@ -16,28 +16,61 @@
 
 /* Variables CSS para los colores principales del diseño */
 :root {
-    --barber-error-color: #EF4444; /* Rojo vibrante para mensajes de error */
+  --barber-error-color: #EF4444;
+  /* Rojo vibrante para mensajes de error */
 
-  --barber-primary-color: #cb6d00; /* Naranja/marrón del logo y botón */
-  --barber-text-dark: #190700; /* Texto oscuro (para títulos, etc.) */
-  --barber-text-light: #3f4155; /* Texto gris claro (para descripciones, labels) */
-  --barber-background-light: #F5F5F5; /* Fondo general de la página */
-  --barber-gray-left: #615c5c; /* El gris oscuro de la sección izquierda */
-  --barber-divider-color: #E0E0E0; /* Línea del separador */
-  --google-red: #EA4335; /* Color para el icono de Google */
-  --google-blue: #4285F4; /* Color azul de Google */
-  --google-green: #34A853; /* Color verde de Google */
-  --google-yellow: #FBBC05; /* Color amarillo de Google */
-  --border-color-input: #DDD; /* Borde de inputs y botón de Google */
-  --shadow-color-sm: rgba(0, 0, 0, 0.05); /* Sombra pequeña */
-  --shadow-color-md: rgba(0, 0, 0, 0.1); /* Sombra mediana */
-  --shadow-color-xl: rgba(0, 0, 0, 0.2); /* Sombra grande (para el contenedor del formulario) */
+  --barber-primary-color: #cb6d00;
+  /* Naranja/marrón del logo y botón */
+  --barber-text-dark: #38312e;
+  /* Texto oscuro (para títulos, etc.) */
+  --barber-text-light: #3f4155;
+  /* Texto gris claro (para descripciones, labels) */
+  --barber-background-light: #F5F5F5;
+  /* Fondo general de la página */
+  --barber-gray-left: #615c5c;
+  /* El gris oscuro de la sección izquierda */
+  --barber-divider-color: #E0E0E0;
+  /* Línea del separador */
+  --google-red: #EA4335;
+  /* Color para el icono de Google */
+  --google-blue: #4285F4;
+  /* Color azul de Google */
+  --google-green: #34A853;
+  /* Color verde de Google */
+  --google-yellow: #FBBC05;
+  /* Color amarillo de Google */
+  --border-color-input: #DDD;
+  /* Borde de inputs y botón de Google */
+  --shadow-color-sm: rgba(0, 0, 0, 0.05);
+  /* Sombra pequeña */
+  --shadow-color-md: rgba(0, 0, 0, 0.1);
+  /* Sombra mediana */
+  --shadow-color-xl: rgba(0, 0, 0, 0.2);
+  /* Sombra grande (para el contenedor del formulario) */
   --transition-speed-fast: 0.15s;
   --transition-speed-normal: 0.3s;
+
+  /* --- Nuevas variables para el Dashboard --- */
+   --dashboard-sidebar-bg: #FFFFFF; /* CAMBIO: Fondo del sidebar ahora blanco */
+  --dashboard-sidebar-text: #333333; /* CAMBIO: Texto principal del sidebar (oscuro) */
+  --dashboard-sidebar-text-light: #6B7280; /* CAMBIO: Texto secundario/inactivo del sidebar (gris más oscuro) */
+  --dashboard-sidebar-active-item-bg: #F3F4F6; /* CAMBIO: Fondo del item activo/hover del sidebar (gris muy claro) */
+  --dashboard-header-bg: #FFFFFF; /* Fondo del header global (blanco) */
+  --dashboard-bg-content: #f3f3f5; /* Fondo general del área de contenido del dashboard */
+  --dashboard-card-bg: #FFFFFF; /* Fondo de las tarjetas de estadísticas */
+  --dashboard-border-color: #E6EAF2; /* Color de borde para tarjetas y elementos */
+  --dashboard-icon-color: #6D727C; /* Color por defecto para algunos iconos */
+  --dashboard-accent-green: #2ecc71; /* Verde para porcentajes positivos */
+  --dashboard-accent-red: #e74c3c; /* Rojo para porcentajes negativos */
+  --dashboard-accent-purple: #9b59b6; /* Morado para íconos/tendencias */
+
+
 }
 
 /* Estilos base para el cuerpo y el contenedor principal de la aplicación */
-html, body, #root {
+html,
+body,
+#root {
   min-height: 100vh;
   margin: 0;
   /* Aplicamos GeistSans como la fuente principal */

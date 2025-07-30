@@ -1,0 +1,249 @@
+/* src/components/layout/Sidebar/Sidebar.css */
+
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background-color: var(--dashboard-sidebar-bg); /* CAMBIO: Fondo blanco */
+  color: var(--dashboard-sidebar-text); /* CAMBIO: Texto oscuro */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05); /* Sombra más sutil */
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  transition: width 0.3s ease;
+  z-index: 100; /* Asegura que esté por encima del contenido principal si hay solapamiento */
+
+}
+
+/* Encabezado del Sidebar */
+.sidebar-header {
+  padding: 0 1.5rem 2rem;
+  text-align: center;
+  height: 10vh;
+  margin-top: 20px;
+
+
+}
+
+.sidebar-logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--barber-text-dark); /* CAMBIO: Color del logo/nombre oscuro */
+  margin-bottom: 0.25rem;
+
+}
+
+.sidebar-logo-icon {
+  font-size: 1.5rem;
+      /* border: solid 1px red; */
+
+}
+
+.sidebar-app-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.sidebar-subtitle {
+  font-size: 0.875rem;
+  color: var(--dashboard-sidebar-text-light); /* CAMBIO: Subtítulo gris más oscuro */
+  margin-top: 0.25rem;
+}
+
+/* Navegación Principal */
+.sidebar-nav {
+  flex-grow: 1;
+  padding: 0 1rem;
+  /* border: solid 1px red; */
+}
+
+.nav-section-title {
+  font-size: 0.75rem;
+  color: var(--dashboard-sidebar-text-light); /* CAMBIO: Título de sección gris más oscuro */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 0.5rem;
+  margin-bottom: 0.5rem;
+
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 60vh;
+
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.375rem;
+  color: var(--dashboard-sidebar-text); /* CAMBIO: Color de ítem normal oscuro */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color var(--transition-speed-fast) ease, color var(--transition-speed-fast) ease;
+}
+
+.nav-item:hover {
+  background-color: var(--dashboard-sidebar-active-item-bg); /* CAMBIO: Fondo gris claro al hover */
+  color: var(--dashboard-sidebar-text); /* Asegura que el texto siga oscuro */
+}
+
+.nav-item.active {
+  background-color: var(--dashboard-sidebar-active-item-bg); /* CAMBIO: Fondo gris claro activo */
+  color: var(--barber-primary-color); /* CAMBIO: Color del texto activo (tu primary color) */
+  font-weight: 600;
+}
+
+.nav-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.4rem;
+  color: var(--dashboard-sidebar-text-light); /* CAMBIO: Color de icono normal gris */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item.active .nav-icon {
+  color: var(--barber-primary-color); /* CAMBIO: Color de icono activo (tu primary color) */
+}
+
+/* Información del Usuario */
+.sidebar-user-info {
+  padding: 1.5rem;
+  border-top: 1px solid var(--dashboard-border-color); /* CAMBIO: Borde más claro */
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 1rem;
+}
+
+.user-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--barber-primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+  color: var(--barber-text-dark); /* CAMBIO: Nombre de usuario oscuro */
+}
+
+.user-email {
+  font-size: 0.7rem;
+  color: var(--dashboard-sidebar-text-light); /* CAMBIO: Email gris más oscuro */
+}
+
+.user-issues {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  color: var(--dashboard-sidebar-text-light);
+}
+
+.issue-notification-circle {
+  background-color: var(--dashboard-accent-red);
+  color: white;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.6rem;
+  flex-shrink: 0;
+}
+
+.issue-text {
+  flex-shrink: 0;
+}
+
+.issue-close-icon {
+  font-weight: bold;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Responsive para el Sidebar (manteniendo la misma lógica pero con los nuevos colores) */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar-header {
+    padding: 0 1rem 1rem;
+  }
+
+  .sidebar-nav {
+    padding: 0 0.5rem;
+  }
+
+  .sidebar-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .nav-item {
+    flex-direction: column;
+    padding: 0.5rem;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .nav-icon {
+    margin-right: 0;
+    margin-bottom: 0.25rem;
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .nav-section-title {
+    display: none;
+  }
+
+  .sidebar-user-info {
+    justify-content: center;
+    padding: 1rem;
+    border-top: none;
+  }
+
+  .sidebar-user-info .user-details {
+    display: none;
+  }
+  .sidebar-user-info .user-issues {
+    position: static;
+    margin-left: 1rem;
+  }
+}

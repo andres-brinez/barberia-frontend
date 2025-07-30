@@ -1,0 +1,79 @@
+/* src/components/layout/Header/Header.css */
+
+.dashboard-global-header { /* Renombrado para ser más específico */
+  display: flex;
+  justify-content: flex-end; /* Alinear contenido a la derecha */
+  align-items: center;
+  padding: 1rem 2rem; /* Más pequeño que el anterior */
+  background-color: var(--dashboard-header-bg); /* Fondo blanco */
+  box-shadow: var(--shadow-color-sm); /* Sombra sutil */
+  border-bottom: 1px solid var(--dashboard-border-color); /* Borde inferior sutil */
+  min-height: 60px; /* Altura mínima para que se vea como una barra */
+}
+
+.header-placeholder-left {
+  flex-grow: 1; /* Para empujar los iconos a la derecha */
+}
+
+.header-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espacio entre iconos */
+}
+
+.header-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--dashboard-icon-color);
+  cursor: pointer;
+  transition: color var(--transition-speed-fast) ease;
+}
+
+.header-icon:hover {
+  color: var(--barber-primary-color);
+}
+
+.logout-button-header { /* Renombrado para evitar conflicto */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem; /* Padding más pequeño */
+  background-color: white; /* Fondo blanco */
+  color: var(--dashboard-icon-color);
+  border: 1px solid var(--dashboard-border-color);
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-speed-fast) ease, box-shadow var(--transition-speed-fast) ease;
+  outline: none;
+  font-size: 0.9rem; /* Fuente más pequeña */
+}
+
+.logout-button-header:hover {
+  background-color: #f0f0f0;
+  box-shadow: var(--shadow-color-sm);
+}
+
+.logout-button-header:focus-visible {
+  box-shadow: 0 0 0 3px rgba(109, 114, 124, 0.4);
+}
+
+.logout-icon-header { /* Renombrado para evitar conflicto */
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--dashboard-icon-color);
+}
+
+/* Responsive para el Header */
+@media (max-width: 640px) {
+  .dashboard-global-header {
+    padding: 0.75rem 1rem;
+  }
+  .header-right-icons {
+    gap: 0.75rem;
+  }
+  .logout-button-header {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
