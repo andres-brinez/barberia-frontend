@@ -1,14 +1,8 @@
 // src/components/layout/MainContent/MainContent.jsx
-import React, { useContext } from 'react';
 import './Dashboard.css';
-import { AppContext } from '../../../core/state/AppContext';
-
 
 function Dashboard() {
 
-  const {state} = useContext(AppContext)
-
-  console.log("Estado del contexto:", state);
 
   return (
     <main className="main-content">

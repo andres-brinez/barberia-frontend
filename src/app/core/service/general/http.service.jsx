@@ -1,11 +1,12 @@
 //import { StorageService } from "./storage.service";
 
+import { getAuthToken } from "./localStorageService";
 
 //const storageService = new StorageService();
 
 const headers = {
   'Content-Type': 'application/json',
-  //'Authorization': `Bearer ${storageService.get('TOKEN')}`
+  'Authorization': `Bearer ${getAuthToken()}` // Añade el token de autorización si está disponible
 };
 
 export default {

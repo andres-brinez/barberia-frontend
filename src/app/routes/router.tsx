@@ -3,6 +3,7 @@ import { DashboardLayout } from "../ui/layouts/DashboardLayout";
 import Dashboard from "../ui/components/Dashboard/Dashboard";
 import LoginPage from "../ui/pages/LoginPage/LoginPage";
 import NotFoundPage from "../ui/components/NotFoundPage/NotFoundPage";
+import Users from "../ui/components/Users/Users";
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +17,9 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard", element: <Dashboard />,
+            },
+            {
+                path: "/dashboard/users", element: <Users />,
             },
 
         ]

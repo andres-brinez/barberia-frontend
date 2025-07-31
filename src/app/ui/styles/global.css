@@ -51,15 +51,15 @@
   --transition-speed-normal: 0.3s;
 
   /* --- Nuevas variables para el Dashboard --- */
-   --dashboard-sidebar-bg: #FFFFFF; /* CAMBIO: Fondo del sidebar ahora blanco */
+   --dashboard-sidebar-bg: #fafafa; /* CAMBIO: Fondo del sidebar ahora blanco */
   --dashboard-sidebar-text: #333333; /* CAMBIO: Texto principal del sidebar (oscuro) */
   --dashboard-sidebar-text-light: #6B7280; /* CAMBIO: Texto secundario/inactivo del sidebar (gris más oscuro) */
   --dashboard-sidebar-active-item-bg: #F3F4F6; /* CAMBIO: Fondo del item activo/hover del sidebar (gris muy claro) */
   --dashboard-header-bg: #FFFFFF; /* Fondo del header global (blanco) */
-  --dashboard-bg-content: #f3f3f5; /* Fondo general del área de contenido del dashboard */
+  --dashboard-bg-content: #fcfcff41; /* Fondo general del área de contenido del dashboard */
   --dashboard-card-bg: #FFFFFF; /* Fondo de las tarjetas de estadísticas */
   --dashboard-border-color: #E6EAF2; /* Color de borde para tarjetas y elementos */
-  --dashboard-icon-color: #6D727C; /* Color por defecto para algunos iconos */
+  --dashboard-icon-color: #1a1a1b; /* Color por defecto para algunos iconos */
   --dashboard-accent-green: #2ecc71; /* Verde para porcentajes positivos */
   --dashboard-accent-red: #e74c3c; /* Rojo para porcentajes negativos */
   --dashboard-accent-purple: #9b59b6; /* Morado para íconos/tendencias */
