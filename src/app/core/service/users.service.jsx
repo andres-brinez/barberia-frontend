@@ -12,6 +12,8 @@ export const getUsersService = async () => {
             
         });
 
+        console.log(response.status)
+
         if (!response.ok) {
             throw new Error('Error al obtener los usuarios');
         }
@@ -23,4 +25,24 @@ export const getUsersService = async () => {
         throw error; // Propaga el error para manejarlo en el componente
     }
     
+}
+
+// eliminar un un usuario por su correo
+
+export const deleteUserService = async (email) => {
+    try {
+        const response = await fetch(`${urls.deleteUser}/${email}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAuthToken()}`
+            },
+            
+        });
+
+        return response     
+    } catch (error) {
+        console.error('Error al eliminar el usuario:', error);
+        throw error; // Propaga el error para manejarlo en el componente
+    }
 }
