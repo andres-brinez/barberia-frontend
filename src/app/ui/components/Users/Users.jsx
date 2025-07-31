@@ -1,24 +1,50 @@
 // src/pages/UsersPage/UsersPage.jsx
 import './Users.css'; // Estilos específicos para esta página
 import { PlusIcon } from '@heroicons/react/24/outline';
+import React, { useState } from 'react';
 
 
 // Iconos (asegúrate de tenerlos instalados: npm install @heroicons/react)
 import { useGetUsers } from '../../../core/hooks/useGetUsers';
 import { useDeleteUser } from '../../../core/hooks/UseDeleteUser';
 import UserTableRow from '../UserTableRow/UserTableRow';
+import UserDetailModal from '../UserDetailModal/UserDetailModal';
 
 function Users() {
 
-    const { users,setUsers, isLoading } = useGetUsers()
+    const { users, setUsers, isLoading } = useGetUsers()
     const { deleteUser } = useDeleteUser()
+    const [selectedUser, setSelectedUser] = useState(null);
 
-     // Manejador para Ver detalles del usuario
+    // const users = [
+    //     {
+    //         id: 1,
+    //         username: 'Juan Perez',
+    //         email: 'xvH0Q@example.com',
+    //         rol: 'ROLE_ADMIN',
+    //         isActive: true,
+    //         lastAccess: '2023-10-01T12:00:00Z'
+    //     },
+    //     {
+    //         id: 2,
+    //         username: 'Maria Lopez',
+    //         email: 'FkGxH@example.com',
+    //         rol: 'ROLE_BARBER',
+    //         isActive: false,
+    //         lastAccess: '2023-10-02T14:30:00Z'
+    //     }]
+
+
+    // Manejador para Ver detalles del usuario
     const handleView = (userEmail) => {
         alert(`Ver detalles del usuario con Email: ${userEmail}`);
-        // Lógica para ver detalles (ej. abrir un modal con info completa, redirigir)
+        // hacer el llamado a la API para obtener los detalles del usuario
+        const user=  users.find(user => user.email === userEmail);
+        console.log(user)
+        setSelectedUser(user);
+
     };
-    
+
 
     const handleEdit = (userId) => {
         alert(`Editar el usuario ${userId}`);
@@ -31,6 +57,10 @@ function Users() {
             deleteUser(userEmail)
             setUsers((prevUsers) => prevUsers.filter(user => user.email !== userEmail));
         }
+    };
+
+    const handleCloseModal = () => {
+        setSelectedUser(null);
     };
 
     return (
@@ -68,7 +98,7 @@ function Users() {
                                     <th></th> {/* Columna para el menú de opciones */}
                                 </tr>
                             </thead>
-                             <tbody>
+                            <tbody>
                                 {users.map((user) => (
                                     <UserTableRow
                                         key={user.email} // Usamos email como key si es único, o user.id si existe
@@ -81,8 +111,13 @@ function Users() {
                             </tbody>
                         </table>
                     </div>
-                )}
+                 )}
             </div>
+
+            {/* Renderizar el modal si hay un usuario seleccionado */}
+            {selectedUser && (
+                <UserDetailModal user={selectedUser} onClose={handleCloseModal} />
+            )}
         </div>
     );
 }
