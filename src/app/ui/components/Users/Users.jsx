@@ -1,46 +1,45 @@
 // src/pages/UsersPage/UsersPage.jsx
-import React, { useState, useEffect, useRef } from 'react';
 import './Users.css'; // Estilos específicos para esta página
+import { PlusIcon } from '@heroicons/react/24/outline';
+
 
 // Iconos (asegúrate de tenerlos instalados: npm install @heroicons/react)
-import { PlusIcon, EllipsisVerticalIcon, PencilSquareIcon, TrashIcon, EyeIcon } from '@heroicons/react/24/outline';
 import { useGetUsers } from '../../../core/hooks/useGetUsers';
+import { useDeleteUser } from '../../../core/hooks/UseDeleteUser';
+import UserTableRow from '../UserTableRow/UserTableRow';
 
 function Users() {
-    const [error] = useState(null);
-    const [openDropdownId, setOpenDropdownId] = useState(null); // Para controlar qué menú de opciones está abierto
-    const dropdownRef = useRef(null); // Para detectar clics fuera del dropdown
 
     const { users, isLoading } = useGetUsers()
+    const { deleteUser, response } = useDeleteUser()
 
-
-
-    // Manejar clics fuera del dropdown para cerrarlo
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setOpenDropdownId(null);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
+     // Manejador para Ver detalles del usuario
+    const handleView = (userEmail) => {
+        alert(`Ver detalles del usuario con Email: ${userEmail}`);
+        // Lógica para ver detalles (ej. abrir un modal con info completa, redirigir)
+    };
+    
 
     const handleEdit = (userId) => {
-        alert(`Editar usuario con ID: ${userId}`);
-        setOpenDropdownId(null); // Cerrar dropdown después de la acción
+        alert(`Editar el usuario ${userId}`);
         // Aquí iría la lógica para redirigir a un formulario de edición o abrir un modal
     };
 
-    const handleDelete = (userId) => {
-        if (window.confirm(`¿Estás seguro de que quieres eliminar al usuario con ID: ${userId}?`)) {
-            alert(`Eliminar usuario con ID: ${userId}`);
+    const handleDelete = (userEmail, userName) => {
+        if (window.confirm(`¿Estás seguro de que quieres eliminar al usuario ${userName}?`)) {
             // Lógica para eliminar el usuario (ej. llamar a la API y luego actualizar el estado)
             //setUsers(users.filter(user => user.id !== userId));
+
+            deleteUser(userEmail).then(() => {
+                alert(response);
+            }).catch((error) => {
+                console.error('Error al eliminar el usuario:', error);
+                alert('Error al eliminar el usuario. Por favor, inténtalo de nuevo.');
+            });
+
+
         }
-        setOpenDropdownId(null); // Cerrar dropdown después de la acción
+        // setOpenDropdownId(null); // Cerrar dropdown después de la acción
     };
 
     return (
@@ -63,8 +62,6 @@ function Users() {
 
                 {isLoading ? (
                     <div className="loading-message">Cargando datos...</div>
-                ) : error ? (
-                    <div className="error-message">Error: {error}</div>
                 ) : users.length === 0 ? (
                     <div className="no-data-message">No hay usuarios registrados.</div>
                 ) : (
@@ -80,50 +77,15 @@ function Users() {
                                     <th></th> {/* Columna para el menú de opciones */}
                                 </tr>
                             </thead>
-                            <tbody>
+                             <tbody>
                                 {users.map((user) => (
-                                    <tr key={user.email}>
-                                        <td>{user.username}</td>
-                                        <td>{user.email}</td>
-                                        <td>
-                                            <span className={`user-role-badge `}>
-                                                {user.rol.includes('ROLE_ADMIN') ? 'Administrador' : user.rol.includes('ROLE_BARBER') ? 'Barbero' : 'Usuario'}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className={`user-status-badge ${user.isActive === true ? 'active' : 'inactive'}`}>
-                                                {user.isActive === true ? 'Activo' : 'Inactivo'}
-                                            </span>
-                                        </td>
-                                        {/* <td>{user.lastAccess}</td> */}
-                                        <td>{"2024-01-14"}</td>
-                                        <td className="actions-cell">
-                                            <div className="options-dropdown-wrapper" ref={dropdownRef}>
-                                                <button
-                                                    className="options-button"
-                                                    onClick={() => setOpenDropdownId(openDropdownId === user.email ? null : user.email)}
-                                                >
-                                                    <EllipsisVerticalIcon className="ellipsis-icon" />
-                                                </button>
-                                                {openDropdownId === user.email && (
-                                                    <div className="dropdown-menu">
-                                                        <button className="dropdown-item" onClick={() => handleView(user.email)}>
-                                                            <EyeIcon className="dropdown-item-icon" />
-                                                            Ver
-                                                        </button>
-                                                        <button className="dropdown-item" onClick={() => handleEdit(user.email)}>
-                                                            <PencilSquareIcon className="dropdown-item-icon" />
-                                                            Editar
-                                                        </button>
-                                                        <button className="dropdown-item delete-item" onClick={() => handleDelete(user.email)}>
-                                                            <TrashIcon className="dropdown-item-icon" />
-                                                            Eliminar
-                                                        </button>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <UserTableRow
+                                        key={user.email} // Usamos email como key si es único, o user.id si existe
+                                        user={user}
+                                        onView={handleView}
+                                        onEdit={handleEdit}
+                                        onDelete={handleDelete}
+                                    />
                                 ))}
                             </tbody>
                         </table>
