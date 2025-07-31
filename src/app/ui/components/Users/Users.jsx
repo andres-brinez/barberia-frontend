@@ -9,12 +9,15 @@ import { useGetUsers } from '../../../core/hooks/useGetUsers';
 import { useDeleteUser } from '../../../core/hooks/UseDeleteUser';
 import UserTableRow from '../UserTableRow/UserTableRow';
 import UserDetailModal from '../UserDetailModal/UserDetailModal';
+import { useNavigate } from 'react-router-dom';
 
 function Users() {
 
     const { users, setUsers, isLoading } = useGetUsers()
     const { deleteUser } = useDeleteUser()
     const [selectedUser, setSelectedUser] = useState(null);
+
+    const navigate = useNavigate();
 
     // const users = [
     //     {
@@ -37,21 +40,26 @@ function Users() {
 
     // Manejador para Ver detalles del usuario
     const handleView = (userEmail) => {
-        alert(`Ver detalles del usuario con Email: ${userEmail}`);
-        // hacer el llamado a la API para obtener los detalles del usuario
-        const user=  users.find(user => user.email === userEmail);
+        const user = users.find(user => user.email === userEmail);
         console.log(user)
         setSelectedUser(user);
 
     };
 
 
-    const handleEdit = (userId) => {
-        alert(`Editar el usuario ${userId}`);
-        // Aquí iría la lógica para redirigir a un formulario de edición o abrir un modal
-    };
+    const handleEdit = (userEmail) => {
+        // Navega a la ruta de edición y pasa el objeto `userToEdit` en la propiedad `state`
+        const userToEdit = users.find(user => user.email === userEmail);
+        if (userToEdit) {
+            navigate(`/dashboard/users/edit/${userToEdit.email}`, { state: { user: userToEdit } });
+        }
+        else {
+            alert('No se pudo encontrar el usuario')
+        }
+    }
 
     const handleDelete = (userEmail, userName) => {
+        // TODO: Mejorar la confirmación de eliminación como la del diseño
         if (window.confirm(`¿Estás seguro de que quieres eliminar al usuario ${userName}?`)) {
 
             deleteUser(userEmail)
@@ -111,7 +119,7 @@ function Users() {
                             </tbody>
                         </table>
                     </div>
-                 )}
+                )}
             </div>
 
             {/* Renderizar el modal si hay un usuario seleccionado */}

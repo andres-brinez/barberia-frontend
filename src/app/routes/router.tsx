@@ -4,6 +4,7 @@ import Dashboard from "../ui/components/Dashboard/Dashboard";
 import LoginPage from "../ui/pages/LoginPage/LoginPage";
 import NotFoundPage from "../ui/components/NotFoundPage/NotFoundPage";
 import Users from "../ui/components/Users/Users";
+import EditUser from "../ui/components/EditUser/EditUser";
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/users", element: <Users />,
+            },
+            {
+                path: "/dashboard/users/edit/:email", element: <EditUser />,
             },
 
         ]

@@ -68,3 +68,23 @@ export const getUserService = async (email) => {
         throw error; // Propaga el error para manejarlo en el componente
     }
 }
+
+// actualizar un usuario por su correo
+
+export const updateUserService = async (email, data) => {
+    try {
+        const response = await fetch(`${urls.updateUser}/${email}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAuthToken()}`
+            },
+            body: JSON.stringify(data),
+        });
+
+        return response     
+    } catch (error) {
+        console.error('Error al actualizar el usuario:', error);
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}

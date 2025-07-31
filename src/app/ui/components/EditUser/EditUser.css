@@ -1,0 +1,322 @@
+/* src/pages/EditUser/EditUser.css */
+.edit-user-page {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+}
+
+.edit-user-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: #4b5563;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.back-button:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.back-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.title-container {
+
+    width: 100%;
+    text-align: center;
+}
+
+.title-container h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+
+}
+
+.title-container p {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0.25rem 0 0 0;
+}
+
+.edit-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-section-card {
+    background-color: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #f9fafb;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    outline: none;
+}
+
+.form-group select {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    cursor: pointer;
+}
+
+.permissions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.permission-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.permission-item input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+}
+
+.profile-photo-dropzone {
+    border: 2px dashed #d1d5db;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9fafb;
+    transition: border-color 0.2s;
+}
+
+.profile-photo-dropzone:hover {
+    border-color: #9ca3af;
+}
+
+.dropzone-text {
+    font-weight: 500;
+    color: #4b5563;
+    margin: 0.5rem 0 0.25rem;
+}
+
+.dropzone-subtext {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.save-button,
+.cancel-button {
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.save-button {
+    background-color: #ff9f43;
+    color: #fff;
+    border: none;
+}
+
+.save-button:hover {
+    background-color: #f78d2d;
+}
+
+.cancel-button {
+    background-color: transparent;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+}
+
+.cancel-button:hover {
+    background-color: #f3f4f6;
+}
+
+/* Estilos de la sección de foto de perfil */
+.profile-photo-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-photo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.profile-photo-dropzone {
+    /* Estilos del área para arrastrar y soltar (dropzone) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border: 2px dashed #d1d5db;
+    border-radius: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9fafb;
+    transition: border-color 0.2s;
+}
+
+.profile-photo-dropzone:hover {
+    border-color: #9ca3af;
+}
+
+.upload-icon-container {
+    padding: 1rem;
+    background-color: #e5e7eb;
+    border-radius: 50%;
+}
+
+.upload-icon {
+    width: 2rem;
+    height: 2rem;
+    color: #6b7280;
+}
+
+.dropzone-text {
+    font-weight: 500;
+    color: #4b5563;
+    margin: 0.5rem 0 0.25rem;
+}
+
+.dropzone-subtext {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Estilos para la previsualización de la imagen */
+.profile-photo-preview {
+    position: relative;
+    width: 200px;
+    /* Tamaño del recuadro de la imagen */
+    height: 200px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #d1d5db;
+}
+
+.profile-photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-photo-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(239, 68, 68, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.remove-photo-button:hover {
+    background-color: #ef4444;
+}
+
+.remove-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.form-section-card textarea {
+    height: 100px;
+    width: 100%;
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}

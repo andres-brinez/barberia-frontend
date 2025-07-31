@@ -5,6 +5,8 @@ export const urls = {
     getUsers: `${environment.apiUrl}/users`,
     deleteUser: `${environment.apiUrl}/users`,
     getUserByEmail: `${environment.apiUrl}/users`,
+    updateUser: `${environment.apiUrl}/users`,
+    createUser: `${environment.apiUrl}/users`,
 
 
 
