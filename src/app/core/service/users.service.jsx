@@ -46,3 +46,25 @@ export const deleteUserService = async (email) => {
         throw error; // Propaga el error para manejarlo en el componente
     }
 }
+
+// obtener un usuario por su correo
+
+export const getUserService = async (email) => {
+    try {
+        const response = await fetch(`${urls.getUser}/${email}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAuthToken()}`
+            },
+            
+        });
+
+        console.log(response)
+
+        return response     
+    } catch (error) {
+        console.error('Error al obtener el usuario:', error);
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}

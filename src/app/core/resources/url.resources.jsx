@@ -4,6 +4,7 @@ export const urls = {
     login: `${environment.apiUrl}/auth/signin`,
     getUsers: `${environment.apiUrl}/users`,
     deleteUser: `${environment.apiUrl}/users`,
+    getUserByEmail: `${environment.apiUrl}/users`,
 
 
 
