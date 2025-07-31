@@ -1,6 +1,6 @@
 // src/components/layout/Sidebar/Sidebar.jsx
 import React, { useContext } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 
 // Iconos
@@ -8,7 +8,7 @@ import {
   ChartBarIcon, UsersIcon, CalendarIcon, CogIcon, DocumentTextIcon, ChartPieIcon,UserGroupIcon 
 } from '@heroicons/react/24/outline'; 
 import { AppContext } from '../../../core/state/AppContext';
-import { getAuthData, getAuthToken } from '../../../core/service/general/localStorageService';
+import { getAuthData } from '../../../core/service/general/localStorageService';
 
 function Sidebar() {
   const navItems = [
@@ -20,7 +20,17 @@ function Sidebar() {
     { name: 'Configuración', icon: <CogIcon />, path: '/dashboard/configuracion' },
   ];
 
-  const {email,username, roles} = getAuthData();
+  const navigate = useNavigate()
+
+  const { email, username, roles } = getAuthData() ?? {};
+
+
+  if (getAuthData() === null ) { 
+
+    navigate('/login'); // Redirige al login si no hay email o username
+    return null; // Evita renderizar el componente
+  }
+  
 
 
   
