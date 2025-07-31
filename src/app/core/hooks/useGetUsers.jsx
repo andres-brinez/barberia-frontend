@@ -16,5 +16,5 @@ export const useGetUsers = () => {
             setIsLoading(false);
         });
     }, []);
-    return { users, isLoading }
+    return { users,setUsers, isLoading }
 }

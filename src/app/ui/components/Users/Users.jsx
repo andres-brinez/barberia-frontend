@@ -10,8 +10,8 @@ import UserTableRow from '../UserTableRow/UserTableRow';
 
 function Users() {
 
-    const { users, isLoading } = useGetUsers()
-    const { deleteUser, response } = useDeleteUser()
+    const { users,setUsers, isLoading } = useGetUsers()
+    const { deleteUser } = useDeleteUser()
 
      // Manejador para Ver detalles del usuario
     const handleView = (userEmail) => {
@@ -27,19 +27,10 @@ function Users() {
 
     const handleDelete = (userEmail, userName) => {
         if (window.confirm(`¿Estás seguro de que quieres eliminar al usuario ${userName}?`)) {
-            // Lógica para eliminar el usuario (ej. llamar a la API y luego actualizar el estado)
-            //setUsers(users.filter(user => user.id !== userId));
 
-            deleteUser(userEmail).then(() => {
-                alert(response);
-            }).catch((error) => {
-                console.error('Error al eliminar el usuario:', error);
-                alert('Error al eliminar el usuario. Por favor, inténtalo de nuevo.');
-            });
-
-
+            deleteUser(userEmail)
+            setUsers((prevUsers) => prevUsers.filter(user => user.email !== userEmail));
         }
-        // setOpenDropdownId(null); // Cerrar dropdown después de la acción
     };
 
     return (
