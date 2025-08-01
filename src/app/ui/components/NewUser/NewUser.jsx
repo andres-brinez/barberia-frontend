@@ -3,9 +3,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './NewUser.css';
 import { ArrowLeftIcon, PhotoIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useCreateUser } from '../../../core/hooks/useCreateUser';
 
 const NewUser = () => {
     const navigate = useNavigate();
+    // Estado para la imagen de perfil
+    const [profileImage, setProfileImage] = useState(null);
+    const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
+
+    const { createUser } = useCreateUser();
 
     // Estado inicial del formulario vacío
     const [formData, setFormData] = useState({
@@ -19,9 +25,7 @@ const NewUser = () => {
         // permissions: [],
     });
 
-    // Estado para la imagen de perfil
-    const [profileImage, setProfileImage] = useState(null);
-    const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -33,10 +37,17 @@ const NewUser = () => {
 
         formData.rol = formData.rol === 'Administrador' ? 'ROLE_ADMIN' : formData.rol === 'Barbero' ? 'ROLE_BARBER' : 'ROLE_USER',
             // formData.status = formData.status === 'Activo' ? true : false;
-        console.log('Nuevo usuario a crear:', formData, 'Imagen:', profileImage);
+            console.log('Nuevo usuario a crear:', formData, 'Imagen:', profileImage);
+
         // Aquí iría la lógica para enviar los datos a tu API
-        alert('Usuario creado con éxito (simulado)');
-        // navigate('/users');
+        try {
+            createUser(formData);
+            alert('Usuario creado con éxito');
+            navigate('/dashboard/users');
+        } catch (error) {
+            console.error('Error al crear el usuario:', error.message);
+            alert('Error al crear el usuario: ' + error.message);
+        }
     };
 
 
@@ -128,8 +139,8 @@ const NewUser = () => {
                                 placeholder="+1 234 567 8900"
                                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                             />
-                            
-                            
+
+
                         </div>
                         <div className="form-group">
                             <label htmlFor="rol">Rol del usuario *</label>

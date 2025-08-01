@@ -27,6 +27,31 @@ export const getUsersService = async () => {
     
 }
 
+// crear un nuevo usuario 
+
+export const createUserService = async (data) => {
+    try {
+        const response = await fetch(`${urls.createUser}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAuthToken()}`
+            },
+            body: JSON.stringify(data),
+        });
+        if (!response.ok) {
+            throw new Error('Error al crear el usuario');
+        }
+        const result = await response.json();
+        return result; // Retorna los datos del usuario creado
+    }
+    catch (error) {
+        console.error('Error al crear el usuario:', error);
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}
+
+
 // eliminar un un usuario por su correo
 
 export const deleteUserService = async (email) => {
