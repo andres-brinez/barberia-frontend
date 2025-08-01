@@ -1,12 +1,23 @@
 // src/components/layout/Header/Header.jsx
-import React from 'react';
 import './Header.css'; // Estilos específicos para el Header
 // Iconos (requiere: npm install @heroicons/react)
 import { BellIcon, Cog8ToothIcon, QuestionMarkCircleIcon, ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline'; // Iconos de ejemplo
+import { clearAuthData } from '../../../core/service/general/localStorageService';
+import { useNavigate } from 'react-router-dom';
+
 
 function Header() {
+
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    alert('Cerrar sesión');
+    if(!window.confirm("¿Estás seguro de que quieres cerrar sesión?")) {
+      return; // Si el usuario cancela, no hacemos nada
+    }
+    else{
+      clearAuthData();
+      navigate('/login'); // Redirige al login después de cerrar sesión
+    }
     // Aquí usarías React Router para redirigir, ej: navigate('/login');
   };
 

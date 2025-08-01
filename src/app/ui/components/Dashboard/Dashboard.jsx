@@ -1,8 +1,10 @@
 // src/components/layout/MainContent/MainContent.jsx
 import './Dashboard.css';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
 
+  const navigate = useNavigate();
 
   return (
     <main className="main-content">
@@ -109,7 +111,7 @@ function Dashboard() {
             </button>
             <button className="action-button blue-button">
               <span className="action-icon">🧑‍💻</span>
-              <div>
+              <div onClick={() => navigate('/dashboard/users/create')}>
                 <p className="action-title">Nuevo Usuario</p>
                 <p className="action-subtitle">Crear cuenta de usuario</p>
               </div>
