@@ -5,6 +5,7 @@ import LoginPage from "../ui/pages/LoginPage/LoginPage";
 import NotFoundPage from "../ui/components/NotFoundPage/NotFoundPage";
 import Users from "../ui/components/Users/Users";
 import EditUser from "../ui/components/EditUser/EditUser";
+import NewUser from "../ui/components/NewUser/NewUser";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/users/edit/:email", element: <EditUser />,
+            },
+            {
+                path: "/dashboard/users/create", element: <NewUser />,
             },
 
         ]

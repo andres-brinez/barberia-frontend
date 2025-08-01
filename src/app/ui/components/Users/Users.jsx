@@ -16,29 +16,17 @@ function Users() {
     const { users, setUsers, isLoading } = useGetUsers()
     const { deleteUser } = useDeleteUser()
     const [selectedUser, setSelectedUser] = useState(null);
-
     const navigate = useNavigate();
 
-    // const users = [
-    //     {
-    //         id: 1,
-    //         username: 'Juan Perez',
-    //         email: 'xvH0Q@example.com',
-    //         rol: 'ROLE_ADMIN',
-    //         isActive: true,
-    //         lastAccess: '2023-10-01T12:00:00Z'
-    //     },
-    //     {
-    //         id: 2,
-    //         username: 'Maria Lopez',
-    //         email: 'FkGxH@example.com',
-    //         rol: 'ROLE_BARBER',
-    //         isActive: false,
-    //         lastAccess: '2023-10-02T14:30:00Z'
-    //     }]
 
 
-    // Manejador para Ver detalles del usuario
+
+    // Manejadores
+    // crear un usuario
+    const handleAddUser = () => {
+        navigate('/dashboard/users/create');
+    };
+
     const handleView = (userEmail) => {
         const user = users.find(user => user.email === userEmail);
         console.log(user)
@@ -79,7 +67,7 @@ function Users() {
                     <h1 className="users-title">Usuarios</h1>
                     <p className="users-subtitle">Administra los usuarios del sistema</p>
                 </div>
-                <button className="add-user-button">
+                <button className="add-user-button" onClick={handleAddUser}>
                     <PlusIcon className="add-user-icon" />
                     Agregar Usuario
                 </button>
