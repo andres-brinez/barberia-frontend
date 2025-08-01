@@ -1,9 +1,6 @@
 import { updateUserService, } from "../service/users.service";
-import { useState } from "react";
 
 export const useUpdateUser = () => {
-
-    const [error, setError] = useState(null);
 
 
     const updateUser = async (email, data) => {
@@ -18,5 +15,5 @@ export const useUpdateUser = () => {
         }
     };
 
-    return { updateUser, error };
+    return { updateUser };
 };
