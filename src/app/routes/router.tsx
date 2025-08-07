@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import { DashboardLayout } from "../ui/layouts/DashboardLayout";
-import Dashboard from "../ui/components/Dashboard/Dashboard";
 import LoginPage from "../ui/pages/LoginPage/LoginPage";
-import NotFoundPage from "../ui/components/NotFoundPage/NotFoundPage";
-import Users from "../ui/components/Users/Users";
-import EditUser from "../ui/components/EditUser/EditUser";
-import NewUser from "../ui/components/NewUser/NewUser";
+import Dashboard from "../ui/pages/Dashboard/Dashboard";
+import Users from "../ui/pages/Users/Users";
+import EditUser from "../ui/pages/EditUser/EditUser";
+import NewUser from "../ui/pages/NewUser/NewUser";
+import NotFoundPage from "../ui/pages/NotFoundPage/NotFoundPage";
 
 export const router = createBrowserRouter([
     {

@@ -6,8 +6,8 @@ import React, { useState } from 'react';
 // Iconos (asegúrate de tenerlos instalados: npm install @heroicons/react)
 import { useGetUsers } from '../../../core/hooks/useGetUsers';
 import { useDeleteUser } from '../../../core/hooks/UseDeleteUser';
-import UserTableRow from '../UserTableRow/UserTableRow';
-import UserDetailModal from '../UserDetailModal/UserDetailModal';
+import UserTableRow from '../../components/UserTableRow/UserTableRow';
+import UserDetailModal from '../../components/UserDetailModal/UserDetailModal';
 import { useNavigate } from 'react-router-dom';
 
 function Users() {
