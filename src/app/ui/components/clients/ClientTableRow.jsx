@@ -8,9 +8,10 @@ const ClientTableRow = ({ client, onEdit, onDelete, onView }) => {
         <tr>
             <td>{client.nombreCompleto}</td>
             <td>{client.edad}</td>
-            <td>{client.ocupación}</td>
+            <td>{client.ocupacion}</td>
             <td>{client.estadoCivil}</td>
-            <td>{client.lastVisit}  </td>
+            {/* <td>{client.lastVisit}  </td> */}
+            <td>2023-12-20</td>
 
             <td className="actions-cell">
                 <OptionsDropdown user={client} onView={onView} onEdit={onEdit} onDelete={onDelete} />
