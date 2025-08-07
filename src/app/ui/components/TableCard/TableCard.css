@@ -1,0 +1,29 @@
+.table-card {
+    background-color: var(--dashboard-card-bg);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-color-sm);
+    border: 1px solid var(--dashboard-border-color);
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 30px 20px;
+
+}
+
+.table-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.table-section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--barber-text-dark);
+    margin: 0;
+}

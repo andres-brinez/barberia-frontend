@@ -33,6 +33,18 @@ body {
     /* Fondo general claro */
 }
 
+
+.app-page-container {
+    padding: 2rem;
+    background-color: var(--dashboard-bg-content);
+    min-height: calc(100vh - 60px - 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border: solid 1px red ;
+
+}
+
 /* Asegúrate de que #root ocupa toda la altura para el diseño de pantalla completa */
 #root {
     min-height: 100vh;

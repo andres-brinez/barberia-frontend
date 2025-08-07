@@ -1,6 +1,6 @@
 // src/components/UserTableRow/UserTableRow.jsx
 import './UserTableRow.css'; // Asegúrate de tener este archivo CSS para los estilos específicos de la fila
-import OptionsDropdown from '../OptionsDropdown/OptionsDropdown';
+import OptionsDropdown from '../../OptionsDropdown/OptionsDropdown';
 
 function UserTableRow({ user, onEdit, onDelete, onView }) {
 

@@ -15,6 +15,7 @@
 .table-container {
   overflow-x: auto; /* Permite scroll horizontal en tablas grandes en pantallas pequeñas */
   flex-grow: 1;
+
 }
 .data-table {
   width: 100%;

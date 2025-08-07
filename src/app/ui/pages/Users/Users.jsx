@@ -6,11 +6,13 @@ import React, { useState } from 'react';
 // Iconos (asegúrate de tenerlos instalados: npm install @heroicons/react)
 import { useGetUsers } from '../../../core/hooks/useGetUsers';
 import { useDeleteUser } from '../../../core/hooks/UseDeleteUser';
-import UserTableRow from '../../components/UserTableRow/UserTableRow';
+import UserTableRow from '../../components/users/UserTableRow/UserTableRow';
 import UserDetailModal from '../../components/UserDetailModal/UserDetailModal';
 import { useNavigate } from 'react-router-dom';
 import SearchFilter from '../../components/SearchFilter/SearchFilter';
 import Table from '../../components/Table/Table';
+import PageHeader from '../../components/PageHeader/PageHeader';
+import TableCard from '../../components/TableCard/TableCard';
 
 function Users() {
 
@@ -18,7 +20,7 @@ function Users() {
     const { deleteUser } = useDeleteUser()
     const navigate = useNavigate();
 
-    const [selectedUser, setSelectedUser] = useState(null);
+    const [, setSelectedUser] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [filterBy, setFilterBy] = useState('Nombre'); // Nombre es el filtro por defecto
 
@@ -36,7 +38,7 @@ function Users() {
         { label: 'Último Acceso', key: 'lastAccess' },
     ]
 
-    
+
 
     // Función para manejar el cambio en la barra de búsqueda
     const handleSearchChange = (e) => {
@@ -65,8 +67,8 @@ function Users() {
             filterValue = user.email?.toLowerCase() || '';
         } else if (filterBy === 'Rol') {
             filterValue = user.rol?.toLowerCase() || '';
-        } 
-        
+        }
+
 
 
         return filterValue.includes(lowerCaseSearchTerm);
@@ -107,74 +109,44 @@ function Users() {
         }
     };
 
-    const handleCloseModal = () => {
-        setSelectedUser(null);
-    };
 
     return (
+        <div className="app-page-container"> {/* Clase general para todas las páginas */}
 
-        <div className="users-page-container">
-            {/* Encabezado de la Página de Usuarios */}
-            <div className="users-header">
-                <div>
-                    <h1 className="users-title">Usuarios</h1>
-                    <p className="users-subtitle">Administra los usuarios del sistema</p>
-                </div>
-                <button className="add-user-button" onClick={handleAddUser}>
-                    <PlusIcon className="add-user-icon" />
-                    Agregar Usuario
-                </button>
-            </div>
+            <PageHeader
+                title="Usuarios"
+                subtitle="Administra los usuarios del sistema"
+                buttonText="Agregar Usuario"
+                onAddClick={handleAddUser}
+            />
 
-            {/* Contenido Principal de la Tabla */}
-            <div className="users-table-card">
-                <div className="table-header">
-                    <h2 className="table-section-title">Lista de Usuarios</h2>
-                    
-                    {/* BUSCADOR Y FILTRO */}
-                    <SearchFilter
-                        filterBy={filterBy}
-                        onFilterChange={handleFilterChange}
-                        searchTerm={searchTerm}
-                        onSearchChange={handleSearchChange}
-                        filterOptions={filterOptions}
-                    />
-                </div>
+            <TableCard title="Lista de Usuarios" searchProps={{
+                filterBy,
+                onFilterChange: handleFilterChange,
+                searchTerm,
+                onSearchChange: handleSearchChange,
+                filterOptions
+            }}>
 
+                <Table
+                    columns={usersColumns}
+                    data={filteredUsers}
+                    loading={isLoading}
+                    error={null}
+                    emptyMessage="No hay usuarios para registrados."
+                    renderRow={(user, index) => (
+                        <UserTableRow
+                            key={user.email} // Usamos email como key si es único, o user.id si existe
+                            user={user}
+                            onView={handleView}
+                            onEdit={handleEdit}
+                            onDelete={handleDelete}
+                        />
+                    )}
+                />
 
-                {isLoading ? (
-                    <div className="loading-message">Cargando datos...</div>
-                ) : users.length === 0 ? (
-                    <div className="no-data-message">No hay usuarios registrados.</div>
-                ) :
-                    filteredUsers.length === 0 ? (
-                        <div className="no-data-message">No se encontraron usuarios que coincidan con la busqueda.</div>
-                    ) :
-                        (
-                            <Table
-                                columns={usersColumns}
-                                data={filteredUsers}
-                                loading={isLoading}
-                                error={null}
-                                emptyMessage="No hay usuarios para registrados."
-                                renderRow={(user, index) => (
-                                    <UserTableRow
-                                        key={user.email} // Usamos email como key si es único, o user.id si existe
-                                        user={user}
-                                        onView={handleView}
-                                        onEdit={handleEdit}
-                                        onDelete={handleDelete}
-                                    />
-                                )}
-                            />
-                                
-                        )}
-            </div>
+            </TableCard>
 
-            {/* Renderizar el modal si hay un usuario seleccionado */}
-            {selectedUser && (
-                <UserDetailModal user={selectedUser} onClose={handleCloseModal} />
-            )}
         </div>
     );
 }
