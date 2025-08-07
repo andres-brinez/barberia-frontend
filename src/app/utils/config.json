@@ -10,5 +10,23 @@
         { "label": "Rol", "key": "rol" },
         { "label": "Estado", "key": "estado" },
         { "label": "Último Acceso", "key": "lastAccess" }
+    ],
+
+    "filterOptionsClient": [
+        { "label": "Edad", "value": "Edad" },
+        { "label": "Nombre", "value": "Nombre" },
+        { "label": "Ocupación", "value": "Ocupación" },
+        { "label": "Estado Civil", "value": "Estado Civil" }
+    ],
+
+    "clientsColumns": [
+        { "label": "Nombre", "key": "name" },
+        { "label": "Edad", "key": "age" },
+        { "label": "Ocupación", "key": "occupation" },
+        { "label": "Estado Civil", "key": "maritalStatus" },       
+        { "label": "Última Visita", "key": "lastVisit" }
+
     ]
+
+    
 }

@@ -6,6 +6,7 @@ import Users from "../ui/pages/Users/Users";
 import EditUser from "../ui/pages/EditUser/EditUser";
 import NewUser from "../ui/pages/NewUser/NewUser";
 import NotFoundPage from "../ui/pages/NotFoundPage/NotFoundPage";
+import Clients from "../ui/pages/Clients/Clients";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/users/create", element: <NewUser />,
             },
+            {
+                path: "/dashboard/clients", element: <Clients/>,
+            },
+
 
         ]
     },
