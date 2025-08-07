@@ -1,5 +1,5 @@
 // src/components/layout/Sidebar/Sidebar.jsx
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 
@@ -13,7 +13,7 @@ import { getAuthData } from '../../../../core/service/general/localStorageServic
 function Sidebar() {
   const navItems = [
   { name: 'Dashboard', icon: <ChartBarIcon />, path: '/dashboard' },
-    { name: 'Clientes', icon: <UserGroupIcon  />, path: '/dashboard/clientes' },
+    { name: 'Clientes', icon: <UserGroupIcon  />, path: '/dashboard/clients' },
     { name: 'Usuarios', icon: <UsersIcon />, path: '/dashboard/users' },
     { name: 'Agenda', icon: <CalendarIcon />, path: '/dashboard/agenda' },
     { name: 'Servicios', icon: <DocumentTextIcon />, path: '/dashboard/servicios' },
@@ -22,7 +22,7 @@ function Sidebar() {
 
   const navigate = useNavigate()
 
-  const { email, username, roles } = getAuthData() ?? {};
+  const { email, username } = getAuthData() ?? {};
 
 
   if (getAuthData() === null ) { 
