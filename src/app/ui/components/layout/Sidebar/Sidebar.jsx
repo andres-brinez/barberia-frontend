@@ -7,8 +7,8 @@ import './Sidebar.css';
 import {
   ChartBarIcon, UsersIcon, CalendarIcon, CogIcon, DocumentTextIcon, ChartPieIcon,UserGroupIcon 
 } from '@heroicons/react/24/outline'; 
-import { AppContext } from '../../../core/state/AppContext';
-import { getAuthData } from '../../../core/service/general/localStorageService';
+import { AppContext } from '../../../../core/state/AppContext';
+import { getAuthData } from '../../../../core/service/general/localStorageService';
 
 function Sidebar() {
   const navItems = [

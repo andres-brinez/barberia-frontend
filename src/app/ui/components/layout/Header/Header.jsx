@@ -2,7 +2,7 @@
 import './Header.css'; // Estilos específicos para el Header
 // Iconos (requiere: npm install @heroicons/react)
 import { BellIcon, Cog8ToothIcon, QuestionMarkCircleIcon, ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline'; // Iconos de ejemplo
-import { clearAuthData } from '../../../core/service/general/localStorageService';
+import { clearAuthData } from '../../../../core/service/general/localStorageService';
 import { useNavigate } from 'react-router-dom';
 
 
