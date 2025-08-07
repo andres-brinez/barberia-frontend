@@ -1,0 +1,14 @@
+{
+    "filterOptionsUser": [
+        { "label": "Nombre", "value": "Nombre" },
+        { "label": "Email", "value": "Email" },
+        { "label": "Rol", "value": "Rol" }
+    ],
+    "usersColumns": [
+        { "label": "Nombre", "key": "username" },
+        { "label": "Email", "key": "email" },
+        { "label": "Rol", "key": "rol" },
+        { "label": "Estado", "key": "estado" },
+        { "label": "Último Acceso", "key": "lastAccess" }
+    ]
+}

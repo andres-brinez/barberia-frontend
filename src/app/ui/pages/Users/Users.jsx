@@ -9,10 +9,10 @@ import { useDeleteUser } from '../../../core/hooks/UseDeleteUser';
 import UserTableRow from '../../components/users/UserTableRow/UserTableRow';
 import UserDetailModal from '../../components/UserDetailModal/UserDetailModal';
 import { useNavigate } from 'react-router-dom';
-import SearchFilter from '../../components/SearchFilter/SearchFilter';
 import Table from '../../components/Table/Table';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import TableCard from '../../components/TableCard/TableCard';
+import config from '../../../utils/config.json'; 
 
 function Users() {
 
@@ -20,24 +20,12 @@ function Users() {
     const { deleteUser } = useDeleteUser()
     const navigate = useNavigate();
 
-    const [, setSelectedUser] = useState(null);
+    const [selectedUser, setSelectedUser] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [filterBy, setFilterBy] = useState('Nombre'); // Nombre es el filtro por defecto
 
-    const filterOptions = [
-        { label: 'Nombre', value: 'Nombre' },
-        { label: 'Email', value: 'Email' },
-        { label: 'Rol', value: 'Rol' },
-    ];
-
-    const usersColumns = [
-        { label: 'Nombre', key: 'username' },
-        { label: 'Email', key: 'email' },
-        { label: 'Rol', key: 'rol' },
-        { label: 'Estado', key: 'estado' },
-        { label: 'Último Acceso', key: 'lastAccess' },
-    ]
-
+    const filterOptions = config.filterOptionsUser || [];
+    const usersColumns = config.usersColumns || []; 
 
 
     // Función para manejar el cambio en la barra de búsqueda
@@ -73,7 +61,6 @@ function Users() {
 
         return filterValue.includes(lowerCaseSearchTerm);
     });
-
 
     // Manejadores
     // crear un usuario
@@ -146,6 +133,13 @@ function Users() {
                 />
 
             </TableCard>
+
+            {selectedUser && (
+                <UserDetailModal
+                    user={selectedUser}
+                    onClose={() => setSelectedUser(null)}
+                />
+            )}
 
         </div>
     );
