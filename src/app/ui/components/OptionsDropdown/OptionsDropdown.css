@@ -1,0 +1,90 @@
+.options-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-speed-fast) ease;
+  outline: none;
+}
+
+.options-button:hover {
+  background-color: var(--dashboard-sidebar-active-item-bg); /* Fondo gris claro */
+}
+
+.options-button:focus-visible {
+  box-shadow: 0 0 0 2px rgba(109, 114, 124, 0.3);
+}
+
+.ellipsis-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--dashboard-icon-color);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: auto; 
+  right: 0;
+  background-color: var(--dashboard-card-bg);
+  border: 1px solid var(--dashboard-border-color);
+  border-radius: 0.375rem;
+  box-shadow: var(--shadow-color-md);
+  min-width: 120px;
+  z-index: 200; /* Asegura que esté por encima de otros elementos */
+  padding: 0 0;
+  transform-origin: top right;
+  animation: fadeInScale 0.15s ease-out forwards; /* Pequeña animación */
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.6rem 1.2rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--barber-text-dark);
+  font-size: 0.95rem;
+  transition: background-color var(--transition-speed-fast) ease, color var(--transition-speed-fast) ease;
+  outline: none;
+}
+
+.dropdown-item:hover {
+  background-color: var(--dashboard-sidebar-active-item-bg);
+}
+
+.dropdown-item.delete-item {
+  color: var(--dashboard-accent-red);
+}
+
+.dropdown-item.delete-item:hover {
+  background-color: rgba(239, 68, 68, 0.1); /* Fondo rojo claro al pasar el ratón */
+}
+
+.dropdown-item-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--dashboard-icon-color); /* Color por defecto de los iconos del dropdown */
+}
+
+.dropdown-item.delete-item .dropdown-item-icon {
+  color: var(--dashboard-accent-red); /* Color rojo para el icono de eliminar */
+}

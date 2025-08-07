@@ -1,0 +1,49 @@
+/* Mensajes de estado */
+.loading-message,
+.no-data-message,
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  color: var(--barber-text-light);
+}
+.error-message {
+  color: var(--dashboard-accent-red);
+  font-weight: 600;
+}
+/* Estilos de la Tabla */
+.table-container {
+  overflow-x: auto; /* Permite scroll horizontal en tablas grandes en pantallas pequeñas */
+  flex-grow: 1;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse; /* Elimina el espacio entre celdas */
+  color: var(--barber-text-dark);
+  min-width: 600px; /* Asegura un ancho mínimo para la tabla en responsive */
+}
+.data-table th,
+.data-table td {
+  padding: 1rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--dashboard-border-color);
+}
+.data-table td {
+  font-size: 0.8rem;
+}
+.data-table th {
+  font-weight: 600;
+  color: var(--barber-text-light);
+  background-color: #f8f9fa; /* Un fondo ligeramente diferente para el encabezado de la tabla */
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+/* Responsive para la Tabla */
+@media (max-width: 768px) {
+  .data-table th,
+  .data-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
+  }
+}

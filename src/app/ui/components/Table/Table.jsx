@@ -1,8 +1,9 @@
 // src/components/Table/Table.jsx
 import React from 'react';
+import './Table.css';
 
 const Table = ({ columns, data, renderRow, loading, error, emptyMessage }) => {
-    
+
     if (loading) {
         return <div className="loading-message">Cargando datos...</div>;
     }
@@ -16,8 +17,8 @@ const Table = ({ columns, data, renderRow, loading, error, emptyMessage }) => {
     }
 
     return (
-        <div className="table-responsive">
-            <table className="users-table"> {/* O un nombre más genérico, como "app-table" */}
+        <div className="table-container">
+            <table className="data-table">
                 <thead>
                     <tr>
                         {columns.map((col, index) => (

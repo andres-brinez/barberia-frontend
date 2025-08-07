@@ -10,6 +10,7 @@ import UserTableRow from '../../components/UserTableRow/UserTableRow';
 import UserDetailModal from '../../components/UserDetailModal/UserDetailModal';
 import { useNavigate } from 'react-router-dom';
 import SearchFilter from '../../components/SearchFilter/SearchFilter';
+import Table from '../../components/Table/Table';
 
 function Users() {
 
@@ -21,6 +22,21 @@ function Users() {
     const [searchTerm, setSearchTerm] = useState('');
     const [filterBy, setFilterBy] = useState('Nombre'); // Nombre es el filtro por defecto
 
+    const filterOptions = [
+        { label: 'Nombre', value: 'Nombre' },
+        { label: 'Email', value: 'Email' },
+        { label: 'Rol', value: 'Rol' },
+    ];
+
+    const usersColumns = [
+        { label: 'Nombre', key: 'username' },
+        { label: 'Email', key: 'email' },
+        { label: 'Rol', key: 'rol' },
+        { label: 'Estado', key: 'estado' },
+        { label: 'Último Acceso', key: 'lastAccess' },
+    ]
+
+    
 
     // Función para manejar el cambio en la barra de búsqueda
     const handleSearchChange = (e) => {
@@ -96,7 +112,7 @@ function Users() {
     };
 
     return (
-        
+
         <div className="users-page-container">
             {/* Encabezado de la Página de Usuarios */}
             <div className="users-header">
@@ -121,12 +137,7 @@ function Users() {
                         onFilterChange={handleFilterChange}
                         searchTerm={searchTerm}
                         onSearchChange={handleSearchChange}
-                        filterOptions={[
-                            { value: 'Nombre', label: 'Nombre' },
-                            { value: 'Email', label: 'Email' },
-                            { value: 'Rol', label: 'Rol' },
-                        ]}
-
+                        filterOptions={filterOptions}
                     />
                 </div>
 
@@ -140,31 +151,23 @@ function Users() {
                         <div className="no-data-message">No se encontraron usuarios que coincidan con la busqueda.</div>
                     ) :
                         (
-                            <div className="table-responsive">
-                                <table className="users-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Email</th>
-                                            <th>Rol</th>
-                                            <th>Estado</th>
-                                            <th>Último Acceso</th>
-                                            <th></th> {/* Columna para el menú de opciones */}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {filteredUsers.map((user) => (
-                                            <UserTableRow
-                                                key={user.email} // Usamos email como key si es único, o user.id si existe
-                                                user={user}
-                                                onView={handleView}
-                                                onEdit={handleEdit}
-                                                onDelete={handleDelete}
-                                            />
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
+                            <Table
+                                columns={usersColumns}
+                                data={filteredUsers}
+                                loading={isLoading}
+                                error={null}
+                                emptyMessage="No hay usuarios para registrados."
+                                renderRow={(user, index) => (
+                                    <UserTableRow
+                                        key={user.email} // Usamos email como key si es único, o user.id si existe
+                                        user={user}
+                                        onView={handleView}
+                                        onEdit={handleEdit}
+                                        onDelete={handleDelete}
+                                    />
+                                )}
+                            />
+                                
                         )}
             </div>
 

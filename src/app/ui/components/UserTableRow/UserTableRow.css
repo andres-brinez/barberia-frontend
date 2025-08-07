@@ -1,0 +1,53 @@
+/* Colores de Badges (Rol y Estado) */
+.user-role-badge{
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  /* border-radius: 0.25rem; */
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize; /* Capitaliza la primera letra (Activo, Inactivo, Administrador, Usuario) */
+  border: solid 1px rgb(189, 185, 185); /* Borde transparente por defecto */
+  border-radius: 100px;
+}
+
+
+.user-status-badge
+ {
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize; /* Capitaliza la primera letra (Activo, Inactivo, Administrador, Usuario) */
+  border-radius: 100px;
+}
+
+
+.user-status-badge.active {
+  background-color: #dbfdea; /* Verde claro */
+  color: #397758; /* Verde oscuro */
+}
+
+.user-status-badge.inactive {
+  background-color: #fbe3e0; /* Rojo claro */
+  color: #a1201f; /* Rojo oscuro */
+}
+
+/* Columna de Acciones (Dropdown) */
+.actions-cell {
+  position: relative;
+  text-align: right; /* Alinear los 3 puntos a la derecha */
+}
+
+
+/* Responsive para la Página de Usuarios */
+@media (max-width: 768px) {
+  
+  
+  /* Ajustes para que los badges no sean demasiado grandes */
+  .user-role-badge,
+  .user-status-badge {
+    padding: 0.2em 0.5em;
+    font-size: 0.7rem;
+  }
+}
