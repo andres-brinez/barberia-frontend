@@ -9,6 +9,7 @@ import { useDeleteUser } from '../../../core/hooks/UseDeleteUser';
 import UserTableRow from '../../components/UserTableRow/UserTableRow';
 import UserDetailModal from '../../components/UserDetailModal/UserDetailModal';
 import { useNavigate } from 'react-router-dom';
+import SearchFilter from '../../components/SearchFilter/SearchFilter';
 
 function Users() {
 
@@ -56,7 +57,6 @@ function Users() {
     });
 
 
-
     // Manejadores
     // crear un usuario
     const handleAddUser = () => {
@@ -96,6 +96,7 @@ function Users() {
     };
 
     return (
+        
         <div className="users-page-container">
             {/* Encabezado de la Página de Usuarios */}
             <div className="users-header">
@@ -113,25 +114,20 @@ function Users() {
             <div className="users-table-card">
                 <div className="table-header">
                     <h2 className="table-section-title">Lista de Usuarios</h2>
+                    
                     {/* BUSCADOR Y FILTRO */}
-                    <div className="search-container">
-                        <div className="filter-select">
-                            <select value={filterBy} onChange={handleFilterChange}>
-                                <option value="Nombre">Nombre</option>
-                                <option value="Email">Email</option>
-                                <option value="Rol">Rol</option>
-                            </select>
-                        </div>
-                        <div className="search-input-wrapper">
-                            <MagnifyingGlassIcon className="search-icon" />
-                            <input
-                                type="text"
-                                placeholder={`Buscar por ${filterBy.toLowerCase()}...`}
-                                value={searchTerm}
-                                onChange={handleSearchChange}
-                            />
-                        </div>
-                    </div>
+                    <SearchFilter
+                        filterBy={filterBy}
+                        onFilterChange={handleFilterChange}
+                        searchTerm={searchTerm}
+                        onSearchChange={handleSearchChange}
+                        filterOptions={[
+                            { value: 'Nombre', label: 'Nombre' },
+                            { value: 'Email', label: 'Email' },
+                            { value: 'Rol', label: 'Rol' },
+                        ]}
+
+                    />
                 </div>
 
 
