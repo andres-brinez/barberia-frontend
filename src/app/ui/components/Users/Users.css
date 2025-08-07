@@ -72,12 +72,135 @@
   flex-direction: column;
 }
 
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 .table-section-title {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--barber-text-dark);
-  margin-bottom: 1.5rem;
+    margin: 0;
 }
+/*Buscador  */
+.search-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.filter-select select {
+    /* Estilos base del select */
+    padding: 0.75rem 2.5rem 0.75rem 1rem; /* Aumentamos el padding para el icono */
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background-color: #fff; /* Fondo blanco */
+    color: #1f2937; /* Color de texto más oscuro */
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    
+    /* Quitamos los estilos nativos */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    /* Agregamos la flecha personalizada */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    
+    /* Animación de transición */
+    transition: all 0.2s ease-in-out;
+}
+
+.filter-select select:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.filter-select select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.filter-select select option {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    color: #4b5563;
+    background-color: #fff;
+    font-weight: 500;
+}
+
+/* Estilo para la opción seleccionada */
+.filter-select select  option:checked {
+    background-color: #f3f4f6; /* Un color de fondo para la opción seleccionada */
+}
+
+
+
+.search-input-wrapper {
+    position: relative;
+}
+
+.search-input-wrapper .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #9ca3af;
+}
+
+.search-input-wrapper input {
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+    font-size: 0.9rem;
+    width: 250px;
+}
+
+.search-input-wrapper input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.no-data-message {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .table-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .search-container {
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .search-container > * {
+        width: 100%;
+    }
+    .search-input-wrapper input {
+        width: 100%;
+    }
+}
+
 
 /* Mensajes de estado */
 .loading-message,
