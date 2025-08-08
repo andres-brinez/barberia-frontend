@@ -26,3 +26,27 @@ export const getClientsService = async () => {
     }
     
 }
+
+// crear cliente
+export const createClientService = async (formData) => {
+    try {
+        const response = await fetch(`${urls.createClient}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${getAuthToken()}`
+            },
+             body: formData, // Enviar el FormData directamente,
+        });
+             alert(response.status)
+
+        if (response.status !=  200 && response.status != 201) {
+            throw new Error('Error al crear el cliente');
+        }
+        const result = await response.json();
+        return result; // Retorna los datos del usuario creado
+    }
+    catch (error) {
+        console.error('Error al crear el cliente:', error);
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}

@@ -5,9 +5,12 @@ import '../NewUser/NewUser.css'; // Usamos estilos del NewUser
 import PageHeader from '../../components/PageHeader/PageHeader';
 import FileUpload from '../../components/common/FileUpload/FileUpload';
 import Select from '../../components/common/Select/Select';
+import { useCreateCliente } from '../../../core/hooks/useCreateCliente';
 const NewClient = () => {
     const navigate = useNavigate();
     const [clientPhotos, setClientPhotos] = useState([]);
+
+    const { createClient } = useCreateCliente();
 
     // Opciones para los select
     const civilStatusOptions = ['Soltero/a', 'Casado/a', 'Divorciado/a', 'Viudo/a', 'Unión libre'];
@@ -15,11 +18,12 @@ const NewClient = () => {
     const clothingStyleOptions = ['Formal', 'Casual', 'Deportivo', 'Elegante', 'Urbano', 'Clásico'];
     const topLengthOptions = ['Muy corto', 'Corto', 'Medio', 'Largo', 'Muy largo'];
     const fadeTonePreference = ['Alto', 'Medio', 'Bajo', 'Sin desvanecido'];
-    const skullTypeOptions = ['Dolicocéfalo', 'Braquicéfalo'];
+    const skullTypeOptions = ['Dolicocéfalo', 'Braquicéfalo', "Normocéfalo", "Mesocéfalo", "Bicéfalo"];
     const faceTypeOptions = ['Redondo', 'Ovalado', 'Cuadrado', 'Triangular', 'Corazón', 'Diamante'];
-    const profileTypeOptions = ['Convexo', 'Recto', 'Cóncavo'];
+    const profileTypeOptions = ["Ovalado", "Rectangular", "Triangular", "Cuadrado", "Redondo", "Corazón", "Diamante"];
     const hairTextureOptions = ['Liso', 'Ondulado', 'Rizado', 'Crespo'];
     const hairDensityOptions = ['Baja', 'Media', 'Alta'];
+
     const [formData, setFormData] = useState({
         // Información Personal
         nombreCompleto: '',
@@ -62,13 +66,35 @@ const NewClient = () => {
         esCorteCorrectivo: false, // Por defecto en 'No'
         productoMantenimiento: ''
     });
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Lógica para enviar los datos a la API
-        console.log('Nuevo cliente a crear:', formData.realizaDeporte);
-        console.log('Fotos del cliente:', clientPhotos);
-        // alert('Cliente creado con éxito (simulado)');
-        // navigate('/clients');
+        const formDataSend = new FormData();
+
+        // Crear un objeto procesado con los valores en mayúsculas y sin tildes
+        const processedData = {
+            ...formData,
+            tipoCraneo: formData.tipoCraneo.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+            tipoRostro: formData.tipoRostro.toUpperCase()
+        };
+
+        // Agregar el objeto procesado al FormData
+        formDataSend.append('clientProfileDto', JSON.stringify(processedData));
+
+        // Agregar las fotos del cliente
+        clientPhotos.forEach((photo) => {
+            formDataSend.append('imageFiles', photo.file);
+        });
+
+        try {
+            createClient(formDataSend);
+            console.log(formDataSend);
+            alert('Cliente creado con éxito');
+         navigate('/dashboard/clients');
+        } catch (error) {
+            console.error('Error al crear el cliente:', error.message);
+            alert('Error al crear el cliente: ' + error.message);
+        }
     };
     const handleChange = (e) => {
         const { name, value } = e.target;
