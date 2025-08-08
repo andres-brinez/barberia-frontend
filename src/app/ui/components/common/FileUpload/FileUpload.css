@@ -1,0 +1,186 @@
+/* src/components/common/FileUpload.css */
+
+.file-upload-container {
+    margin-top: 1.5rem;
+}
+
+.file-upload-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--barber-text-dark);
+}
+
+.file-upload-sublabel {
+    font-size: 0.9rem;
+    color: var(--barber-text-light);
+    margin-bottom: 1.5rem;
+}
+
+.file-upload-dropzone {
+    border: 2px dashed #d1d5db;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    background-color: #f9fafb;
+    width: 50%;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: border-color 0.2s;
+    margin: 0 auto;
+}
+
+.file-upload-dropzone:hover {
+    border-color: #9ca3af;
+}
+
+
+
+.dropzone-icon-large {
+    width: 3rem;
+    height: 3rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+}
+
+.dropzone-text {
+    font-weight: 500;
+    color: #4b5563;
+    margin: 0.5rem 0 0.25rem;
+}
+
+.dropzone-subtext {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Estilos para las previsualizaciones y el "agregar más" */
+.photos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.photo-preview-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #d1d5db;
+}
+
+.photo-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-photo-button {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    background-color: rgba(239, 68, 68, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.remove-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.add-more-zone {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #d1d5db;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: #f9fafb;
+    transition: border-color 0.2s;
+}
+
+.add-more-zone:hover {
+    border-color: #9ca3af;
+}
+
+.add-more-zone .upload-icon-container {
+    background-color: #e5e7eb;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-more-zone .upload-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #4b5563;
+}
+
+
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .file-upload-label {
+        font-size: 1.1rem;
+    }
+
+    .file-upload-sublabel {
+        font-size: 0.85rem;
+    }
+
+    .full-dropzone {
+        height: 150px;
+    }
+
+    .dropzone-icon-large {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .dropzone-text {
+        font-size: 0.9rem;
+    }
+
+    .dropzone-subtext {
+        font-size: 0.8rem;
+    }
+    
+    .photo-preview-container,
+    .add-more-zone {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .photos-grid {
+        justify-content: center;
+    }
+
+    .photo-preview-container,
+    .add-more-zone {
+        width: 100px;
+        height: 100px;
+    }
+}

@@ -7,6 +7,7 @@ import EditUser from "../ui/pages/EditUser/EditUser";
 import NewUser from "../ui/pages/NewUser/NewUser";
 import NotFoundPage from "../ui/pages/NotFoundPage/NotFoundPage";
 import Clients from "../ui/pages/Clients/Clients";
+import NewClient from "../ui/pages/NewClient/NewClient";
 
 export const router = createBrowserRouter([
     {
@@ -33,7 +34,13 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/clients", element: <Clients/>,
             },
-
+            {
+                path: "/dashboard/clients/new", element: <NewClient />,
+            }/* ,
+            {
+                path: "/dashboard/clients/edit/:email", element: <EditUser />,
+            }
+ */
 
         ]
     },

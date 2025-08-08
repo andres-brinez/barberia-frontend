@@ -17,7 +17,8 @@ const PageHeader = ({ title, subtitle, buttonText, onAddClick }) => {
                 <p className="page-subtitle">{subtitle}</p>
             </div>
             <button className="add-button" onClick={onAddClick}>
-                <PlusIcon className="add-button-icon" />
+                {/* <PlusIcon className="add-button-icon" /> */}
+                
                 {buttonText}
             </button>
         </div>

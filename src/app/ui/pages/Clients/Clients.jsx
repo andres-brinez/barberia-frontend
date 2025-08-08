@@ -10,12 +10,7 @@ import ClientTableRow from '../../components/clients/ClientTableRow';
 import { useGetClients } from '../../../core/hooks/useGetClients';
 
 function Clients() {
-    // Datos de ejemplo para demostrar
-    // const clientes = [
-    //     { id: 1, nombreCompleto: 'Juan Pérez García', ocupación: 'Estudiante',  lastVisit: '2024-01-15', estadoCivil: 'Soltero', edad: '20', },
-    //     { id: 2, nombreCompleto: 'María García López', ocupación: 'Ingeniero', edad: '9', lastVisit: '2024-01-10',  estadoCivil: 'Casado', },
-    //     { id: 3, nombreCompleto: 'Carlos López Martínez',  ocupación: 'Profesor', edad: '02', lastVisit: '2023-12-20',  estadoCivil: 'Soltero', },
-    // ];
+    
     const error = null;
 
     const { clientes,setClientes, isLoading } = useGetClients();
@@ -45,7 +40,7 @@ function Clients() {
     });
 
     const handleAddClient = () => {
-        navigate('/clients/new');
+        navigate('/dashboard/clients/new');
     };
 
     const handleView = (userEmail) => {
