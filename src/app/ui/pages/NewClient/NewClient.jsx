@@ -75,7 +75,7 @@ const NewClient = () => {
         const processedData = {
             ...formData,
             tipoCraneo: formData.tipoCraneo.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
-            tipoRostro: formData.tipoRostro.toUpperCase()
+            tipoRostro: formData.tipoRostro.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
         };
 
         // Agregar el objeto procesado al FormData

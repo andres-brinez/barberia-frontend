@@ -8,17 +8,21 @@ import config from '../../../utils/config.json';
 import './Clients.css';
 import ClientTableRow from '../../components/clients/ClientTableRow';
 import { useGetClients } from '../../../core/hooks/useGetClients';
+import ClientDetailModal from '../../components/clients/ClientDetailModal/ClientDetailModal';
 
 function Clients() {
     
     const error = null;
 
     const { clientes,setClientes, isLoading } = useGetClients();
+    const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+    const [selectedClient, setSelectedClient] = useState(null);
 
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [filterBy, setFilterBy] = useState('Nombre');
 
+    // Filtrar clientes según el término de búsqueda y el campo seleccionado
     const filteredClients = clientes.filter(cliente => {
         if (!searchTerm) return true;
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
@@ -43,9 +47,14 @@ function Clients() {
         navigate('/dashboard/clients/new');
     };
 
-    const handleView = (userEmail) => {
-        console.log('Ver detalles del cliente con ID:', userEmail);
+    const handleView = (userId) => {
 
+        const selectedClient = clientes.find(client => client.id === userId);
+        if (selectedClient) {
+            handleOpenDetailModal(selectedClient);
+        } else {
+            alert('Cliente no encontrado');
+        }
     };
 
     const handleEdit = (clientId) => {
@@ -54,6 +63,16 @@ function Clients() {
 
     const handleDelete = (clientId) => {
         console.log('Eliminar cliente con ID:', clientId);
+    };
+
+    const handleOpenDetailModal = (client) => {
+        setSelectedClient(client);
+        setIsDetailModalOpen(true);
+    };
+
+    const handleCloseDetailModal = () => {
+        setIsDetailModalOpen(false);
+        setSelectedClient(null);
     };
 
     const clientColumns = config.clientsColumns || [];
@@ -97,7 +116,15 @@ function Clients() {
                     )}
                 />
             </TableCard>
+            {selectedClient && (
+                <ClientDetailModal
+                    isOpen={isDetailModalOpen}
+                    onClose={handleCloseDetailModal}
+                    clientData={selectedClient}
+                />
+            )}
         </div>
+        
     );
 }
 

@@ -37,7 +37,6 @@ export const createClientService = async (formData) => {
             },
              body: formData, // Enviar el FormData directamente,
         });
-             alert(response.status)
 
         if (response.status !=  200 && response.status != 201) {
             throw new Error('Error al crear el cliente');
