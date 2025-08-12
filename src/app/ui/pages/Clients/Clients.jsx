@@ -58,7 +58,7 @@ function Clients() {
     };
 
     const handleEdit = (clientId) => {
-        console.log('Editar cliente con ID:', clientId);
+        navigate(`/dashboard/clients/${clientId}/edit`);
     };
 
     const handleDelete = (clientId) => {

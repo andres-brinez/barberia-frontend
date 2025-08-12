@@ -8,6 +8,7 @@ import NewUser from "../ui/pages/NewUser/NewUser";
 import NotFoundPage from "../ui/pages/NotFoundPage/NotFoundPage";
 import Clients from "../ui/pages/Clients/Clients";
 import NewClient from "../ui/pages/NewClient/NewClient";
+import EditClient from "../ui/pages/EditClient/EditClient";
 
 export const router = createBrowserRouter([
     {
@@ -36,11 +37,10 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/clients/new", element: <NewClient />,
-            }/* ,
+            },
             {
-                path: "/dashboard/clients/edit/:email", element: <EditUser />,
-            }
- */
+                path: "/dashboard/clients/:idClient/edit", element: <EditClient />,
+            },  
 
         ]
     },
