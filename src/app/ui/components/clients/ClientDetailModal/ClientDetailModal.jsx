@@ -193,8 +193,7 @@ const ClientDetailModal = ({ isOpen, onClose, clientData }) => {
                         {/* Recomendaciones Profesionales */}
                         <div className="detail-section-card full-width">
                             <h4 className="section-title">Recomendaciones Profesionales</h4>
-                            <p><strong>Corte correctivo:</strong></p>
-                            <div className="detail-note">{renderValue(clientData.corteCorrectivo)}</div>
+                            <p><strong>¿Corte correctivo? </strong> {renderBoolean(clientData.esCorteCorrectivo)}</p>
                             <p className="mt-4"><strong>Producto para mantenimiento:</strong></p>
                             <div className="detail-note">{renderValue(clientData.productoMantenimiento)}</div>
                         </div>

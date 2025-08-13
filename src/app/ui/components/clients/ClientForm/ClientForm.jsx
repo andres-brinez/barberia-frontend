@@ -326,15 +326,20 @@ const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true }) => {
                 <section className="form-section-card">
                     <h2 className="section-title">Recomendaciones Profesionales</h2>
                     <div className="form-grid">
-                        <div className="form-group full-width">
-                            <label htmlFor="correctiveCut">Corte correctivo recomendado</label>
-                            <textarea id="correctiveCut" name="correctiveCut" value={formData.correctiveCut} onChange={handleChange} placeholder="Describe el corte correctivo recomendado..."></textarea>
+                        
+                        <div className="form-group radio-group">
+                            <label>¿Corte correctivo?</label>
+                            <div className="radio-options">
+                                <label><input type="radio" name="esCorteCorrectivo" checked={formData.esCorteCorrectivo} onChange={() => handleChange({ target: { name: 'esCorteCorrectivo', value: true } })} /> Sí</label>
+                                <label><input type="radio" name="esCorteCorrectivo" checked={!formData.esCorteCorrectivo} onChange={() => handleChange({ target: { name: 'esCorteCorrectivo', value: false } })} /> No</label>
+                            </div>
                         </div>
                         <div className="form-group full-width">
                             <label htmlFor="productoMantenimiento">Producto adecuado para mantenimiento</label>
                             <textarea id="productoMantenimiento" name="productoMantenimiento" value={formData.productoMantenimiento} onChange={handleChange} placeholder="Recomienda productos para el mantenimiento..."></textarea>
                         </div>
                     </div>
+                    
                 </section>
                 
                 {/* Fotos del Cliente usando el componente reutilizable */}
