@@ -120,6 +120,8 @@ function Clients() {
                 <ClientDetailModal
                     isOpen={isDetailModalOpen}
                     onClose={handleCloseDetailModal}
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
                     clientData={selectedClient}
                 />
             )}

@@ -4,7 +4,7 @@ import { XMarkIcon, PencilIcon, TrashIcon, MagnifyingGlassPlusIcon } from '@hero
 import './ClientDetailModal.css';
 import Modal from '../../common/Modal/Modal';
 
-const ClientDetailModal = ({ isOpen, onClose, clientData }) => {
+const ClientDetailModal = ({ isOpen, onClose, clientData,handleEdit,handleDelete }) => {
     const [selectedPhoto, setSelectedPhoto] = useState(null);
 
     if (!clientData) {
@@ -31,6 +31,15 @@ const ClientDetailModal = ({ isOpen, onClose, clientData }) => {
         return 'No disponible';
     };
 
+    const onEdit = (id)=>{
+        handleEdit(id);
+    }
+
+    const onDelete = (id)=>{
+        handleDelete(id);
+    }
+
+
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <div className="client-detail-content">
@@ -38,10 +47,10 @@ const ClientDetailModal = ({ isOpen, onClose, clientData }) => {
                 <div className="modal-header">
                     <h2 className="modal-title">Perfil del cliente</h2>
                     <div className="modal-actions">
-                        <button className="btn-edit">
+                        <button className="btn-edit" onClick={() => onEdit(clientData.id)}>
                             <PencilIcon className="icon" /> Editar
                         </button>
-                        <button className="btn-delete">
+                        <button className="btn-delete" onClick={()=> onDelete(clientData.id)}>
                             <TrashIcon className="icon" /> Eliminar
                         </button>
                         <button className="btn-close" onClick={onClose}>
