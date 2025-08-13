@@ -8,10 +8,9 @@ export const urls = {
     updateUser: `${environment.apiUrl}/users`,
     createUser: `${environment.apiUrl}/users`,
     getClients: `${environment.apiUrl}/client-profiles`,
-    createClient: `${environment.apiUrl}/client-profiles`
+    getClienteById: `${environment.apiUrl}/client-profiles`,
+    createClient: `${environment.apiUrl}/client-profiles`,
+    updateClient: `${environment.apiUrl}/client-profiles`
 
-
-
-  
 
 }
