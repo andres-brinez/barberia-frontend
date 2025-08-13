@@ -4,7 +4,7 @@ import FileUpload from '../../common/FileUpload/FileUpload';
 import { useNavigate } from 'react-router-dom';
 import './ClientForm.css';
 
-const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true }) => {
+const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true,isUpdating }) => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState(initialData);
     const [clientPhotos, setClientPhotos] = useState([]);
@@ -357,9 +357,12 @@ const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true }) => {
                  )}
 
                 <div className="form-actions">
+                    {isUpdating && <div className="spinner"></div>}
                     <button type="submit" className="save-button">Guardar Cliente</button>
                     <button type="button" onClick={() => navigate('/clients')} className="cancel-button">Cancelar</button>
                 </div>
+
+
             </form>
     );
 };
