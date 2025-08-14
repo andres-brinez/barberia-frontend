@@ -2,7 +2,7 @@
 import React from 'react';
 import './Select.css';
 
-const Select = ({ id, name, value, onChange, options, placeholder }) => {
+const Select = ({ id, name, value, onChange, options, placeholder,isRequired }) => {
     return (
         <div className="select-container">
             <select
@@ -11,6 +11,7 @@ const Select = ({ id, name, value, onChange, options, placeholder }) => {
                 value={value}
                 onChange={onChange}
                 className="custom-select"
+                required={isRequired}
             >
                 {/* Opción por defecto/placeholder */}
                 <option value="" disabled hidden>{placeholder}</option>

@@ -5,9 +5,10 @@ import { useCreateCliente } from '../../../core/hooks/useCreateCliente';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import ClientForm from '../../components/clients/ClientForm/ClientForm';
 const NewClient = () => {
-    
+
     const navigate = useNavigate();
     const { createClient } = useCreateCliente();
+    const [loading, setLoading] = useState(false); // Estado de carga
 
     const [formData,] = useState({
         // Información Personal
@@ -52,8 +53,8 @@ const NewClient = () => {
         productoMantenimiento: ''
     });
 
-    const handleCreateClient = (formData,clientPhotos) => {
-        
+    const handleCreateClient = async (formData, clientPhotos) => {
+
         const formDataSend = new FormData();
 
         // Crear un objeto procesado con los valores en mayúsculas y sin tildes
@@ -71,29 +72,37 @@ const NewClient = () => {
             formDataSend.append('imageFiles', photo.file);
         });
 
+        setLoading(true); // Iniciar el estado de carga
         try {
-            createClient(formDataSend);
-            console.log(formDataSend);
+            await createClient(formDataSend);
             alert('Cliente creado con éxito');
-         navigate('/dashboard/clients');
+            navigate('/dashboard/clients'); // Redirigir solo después de la creación exitosa
         } catch (error) {
             console.error('Error al crear el cliente:', error.message);
             alert('Error al crear el cliente: ' + error.message);
+        } finally {
+            setLoading(false); // Finalizar el estado de carga
         }
     };
-    
+
 
     return (
-         <div className="app-page-container">
+        <div className="app-page-container">
             <PageHeader
                 title="Nuevo Cliente"
                 subtitle="Agrega un nuevo cliente a tu base de datos"
                 buttonText="Volver"
                 onAddClick={() => navigate(-1)}
+
             />
-            
+
             {/* Se pasa la función `handleCreateClient` como prop llamada `onSubmit` */}
-            <ClientForm initialData={formData} onSubmit={handleCreateClient} allowPhotoUpload={true} />
+            <ClientForm
+                initialData={formData}
+                onSubmit={handleCreateClient}
+                allowPhotoUpload={true}
+                isLoading={loading}
+            />
         </div>
     );
 };

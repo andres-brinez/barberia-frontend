@@ -97,7 +97,7 @@ const EditClient = () => {
                 initialData={clientData}
                 onSubmit={handleUpdateClient}
                 allowPhotoUpload={false} // Se desactiva la subida de fotos
-                isUpdating={isUpdating}
+                isLoading={isUpdating}
             />
 
             {/* Muestra un mensaje de error de actualización en la UI */}

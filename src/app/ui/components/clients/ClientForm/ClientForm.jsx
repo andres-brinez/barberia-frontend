@@ -4,7 +4,7 @@ import FileUpload from '../../common/FileUpload/FileUpload';
 import { useNavigate } from 'react-router-dom';
 import './ClientForm.css';
 
-const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true,isUpdating }) => {
+const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true,isLoading }) => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState(initialData);
     const [clientPhotos, setClientPhotos] = useState([]);
@@ -131,27 +131,27 @@ const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true,isUpdating
                     <h2 className="section-title">Medidas del Cabello (cm)</h2>
                     <div className="form-grid">
                         <div className="form-group">
-                            <label htmlFor="frente">Medidas Frente</label>
-                            <input type="number" id="frente" name="medidas.frente" value={formData.medidas.frente} onChange={handleChange} min={1} />
+                            <label htmlFor="frente">Medidas Frente *</label>
+                            <input type="number" id="frente" name="medidas.frente" value={formData.medidas.frente} onChange={handleChange} min={1} required />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="lateral1">Medidas Lateral 1</label>
+                            <label htmlFor="lateral1">Medidas Lateral 1 *</label>
                             <input type="number" id="lateral1" name="medidas.lateral1" value={formData.medidas.lateral1} onChange={handleChange} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="nuca">Medidas Nuca</label>
+                            <label htmlFor="nuca">Medidas Nuca *</label>
                             <input type="number" id="nuca" name="medidas.nuca" value={formData.medidas.nuca} onChange={handleChange} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="lateral2">Medidas Lateral 2</label>
+                            <label htmlFor="lateral2">Medidas Lateral 2 *</label>
                             <input type="number" id="lateral2" name="medidas.lateral2" value={formData.medidas.lateral2} onChange={handleChange} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="barba">Medidas Barba</label>
+                            <label htmlFor="barba">Medidas Barba *</label>
                             <input type="number" id="barba" name="medidas.barba" value={formData.medidas.barba} onChange={handleChange} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="longitudGeneral">Longitud General</label>
+                            <label htmlFor="longitudGeneral">Longitud General *</label>
                             <input type="number" id="longitudGeneral" name="medidas.longitudGeneral" value={formData.medidas.longitudGeneral} onChange={handleChange} />
                         </div>
                     </div>
@@ -223,7 +223,7 @@ const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true,isUpdating
                     <h2 className="section-title">Características Físicas</h2>
                     <div className="form-grid">
                         <div className="form-group">
-                            <label htmlFor="tipoCraneo">Tipo de cráneo</label>
+                            <label htmlFor="tipoCraneo">Tipo de cráneo *</label>
                             <Select
                                 id="tipoCraneo"
                                 name="tipoCraneo"
@@ -231,10 +231,11 @@ const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true,isUpdating
                                 onChange={handleChange}
                                 options={skullTypeOptions}
                                 placeholder="Selecciona tipo"
+                                isRequired ={true}
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="tipoRostro">Tipo de rostro</label>
+                            <label htmlFor="tipoRostro">Tipo de rostro *</label>
                             <Select
                                 id="tipoRostro"
                                 name="tipoRostro"
@@ -242,10 +243,12 @@ const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true,isUpdating
                                 onChange={handleChange}
                                 options={faceTypeOptions}
                                 placeholder="Selecciona tipo"
+                                isRequired ={true}
+
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="tipoPerfil">Tipo de perfil</label>
+                            <label htmlFor="tipoPerfil">Tipo de perfil *</label>
                             <Select
                                 id="tipoPerfil"
                                 name="tipoPerfil"
@@ -253,6 +256,8 @@ const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true,isUpdating
                                 onChange={handleChange}
                                 options={profileTypeOptions}
                                 placeholder="Selecciona perfil"
+                                isRequired ={true}
+
                             />
                         </div>
                     </div>
@@ -357,7 +362,7 @@ const ClientForm = ({ initialData , onSubmit, allowPhotoUpload = true,isUpdating
                  )}
 
                 <div className="form-actions">
-                    {isUpdating && <div className="spinner"></div>}
+                    {isLoading && <div className="spinner"></div>}
                     <button type="submit" className="save-button">Guardar Cliente</button>
                     <button type="button" onClick={() => navigate('/clients')} className="cancel-button">Cancelar</button>
                 </div>
