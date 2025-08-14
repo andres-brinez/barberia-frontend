@@ -4,23 +4,28 @@ import { useNavigate } from 'react-router-dom';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import TableCard from '../../components/TableCard/TableCard';
 import Table from '../../components/Table/Table';
-import config from '../../../utils/config.json'; 
+import config from '../../../utils/config.json';
 import './Clients.css';
 import ClientTableRow from '../../components/clients/ClientTableRow';
 import { useGetClients } from '../../../core/hooks/useGetClients';
 import ClientDetailModal from '../../components/clients/ClientDetailModal/ClientDetailModal';
+import { useDeleteClient } from '../../../core/hooks/useDeleteClient';
 
 function Clients() {
-    
+
     const error = null;
 
-    const { clientes,setClientes, isLoading } = useGetClients();
+    const { clientes, setClientes, isLoading } = useGetClients();
+    const { deleteClient } = useDeleteClient();
+
+    const [loadingDelete, setLoadingDelete] = useState(false); // Estado para manejar la carga de eliminación
     const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
     const [selectedClient, setSelectedClient] = useState(null);
 
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [filterBy, setFilterBy] = useState('Nombre');
+
 
     // Filtrar clientes según el término de búsqueda y el campo seleccionado
     const filteredClients = clientes.filter(cliente => {
@@ -39,7 +44,7 @@ function Clients() {
         else if (filterBy === "Estado Civil") {
             filterValue = cliente.estadoCivil?.toLowerCase() || '';
         }
-        
+
         return filterValue.includes(lowerCaseSearchTerm);
     });
 
@@ -61,10 +66,21 @@ function Clients() {
         navigate(`/dashboard/clients/${clientId}/edit`);
     };
 
-    const handleDelete = (clientId) => {
-        console.log('Eliminar cliente con ID:', clientId);
+    const handleDelete = async (clientId) => {
+        if (window.confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
+            setLoadingDelete(true); // Inicia el estado de carga
+            try {
+                setIsDetailModalOpen(false);
+                await deleteClient(clientId); // Llama al hook para eliminar el cliente
+                setClientes(prevClientes => prevClientes.filter(cliente => cliente.id !== clientId)); // Elimina el cliente de la lista
+                alert('Cliente eliminado con éxito!');
+            } catch (error) {
+                alert(`Error al eliminar el cliente: ${error.message}`);
+            } finally {
+                setLoadingDelete(false); // Finaliza el estado de carga
+            }
+        }
     };
-
     const handleOpenDetailModal = (client) => {
         setSelectedClient(client);
         setIsDetailModalOpen(true);
@@ -101,7 +117,8 @@ function Clients() {
                 <Table
                     columns={clientColumns}
                     data={filteredClients}
-                    loading={isLoading}
+                    loadingData={isLoading}
+                    loadingDelete={loadingDelete}
                     error={error}
                     emptyMessage="No se encontraron clientes que coincidan con la búsqueda."
                     renderRow={(client) => (
@@ -111,7 +128,7 @@ function Clients() {
                             onEdit={() => handleEdit(client.id)}
                             onDelete={() => handleDelete(client.id)}
                             onView={() => handleView(client.id)}
-                            
+
                         />
                     )}
                 />
@@ -126,7 +143,7 @@ function Clients() {
                 />
             )}
         </div>
-        
+
     );
 }
 

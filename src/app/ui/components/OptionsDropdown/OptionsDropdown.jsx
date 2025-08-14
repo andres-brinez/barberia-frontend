@@ -7,8 +7,8 @@ const OptionsDropdown = ({ user, onView, onEdit, onDelete }) => {
     const handleOptionsToggle = () => {
         setOpenDropdown(!openDropdown);
     };
-    const handleActionClick = (action, email, username) => {
-        action(email, username);
+    const handleActionClick = (action, id) => {
+        action(id, );
         setOpenDropdown(false); // Cierra el dropdown después de hacer clic en una opción
     };
 
@@ -36,16 +36,16 @@ const OptionsDropdown = ({ user, onView, onEdit, onDelete }) => {
             </button>
             {openDropdown && (
                 <div className="dropdown-menu">
-                    <button className="dropdown-item" onClick={() => handleActionClick(onView, user.email)}>
+                    <button className="dropdown-item" onClick={() => handleActionClick(onView, user.id)}>
                         <EyeIcon className="dropdown-item-icon" />
                         Ver
                     </button>
-                    <button className="dropdown-item" onClick={() => handleActionClick(onEdit, user.email)}>
+                    <button className="dropdown-item" onClick={() => handleActionClick(onEdit, user.id)}>
                         <PencilSquareIcon className="dropdown-item-icon" />
                         Editar
                     </button>
                     <button className="dropdown-item delete-item" onClick={() => {
-                        handleActionClick(onDelete, user.email, user.username);
+                        handleActionClick(onDelete, user.id);
                     }}>
                         <TrashIcon className="dropdown-item-icon" />
                         Eliminar

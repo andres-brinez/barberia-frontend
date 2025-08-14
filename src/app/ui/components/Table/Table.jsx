@@ -2,12 +2,15 @@
 import React from 'react';
 import './Table.css';
 
-const Table = ({ columns, data, renderRow, loading, error, emptyMessage }) => {
+const Table = ({ columns, data, renderRow, loadingData, loadingDelete, error, emptyMessage }) => {
 
-    if (loading) {
+    if (loadingData) {
         return <div className="loading-message">Cargando datos...</div>;
     }
-
+    if (loadingDelete) {
+        return <div className="loading-message">Eliminando...</div>;
+    }
+    
     if (error) {
         return <div className="error-message">Error: {error}</div>;
     }

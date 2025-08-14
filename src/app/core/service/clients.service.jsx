@@ -97,3 +97,22 @@ export const updateClientService = async (id, data) => {
         throw error; // Propaga el error para manejarlo en el componente
     }
 }
+
+export const deleteClientService = async (id) => {
+    try {
+        const response = await fetch(`${urls.deleteClient}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAuthToken()}`
+            },
+        });
+        if (!response.ok) {
+            throw new Error('Error al eliminar el cliente');
+        }
+        return response; // Puedes retornar algo si es necesario
+    } catch (error) {
+        console.error('Error al eliminar el cliente:', error);
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+};
