@@ -49,6 +49,8 @@ const ClientDetailModal = ({ isOpen, onClose, clientData, handleEdit, handleDele
             await generateClientProfilePDF(clientData);
         } catch (error) {
             console.error("Error al generar el PDF:", error);
+            alert("Error al generar el PDF. Por favor, inténtalo de nuevo.");
+
             // Opcional: mostrar un mensaje de error al usuario
         } finally {
             // Se ejecuta tanto si la descarga fue exitosa como si falló
