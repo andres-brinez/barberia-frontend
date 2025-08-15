@@ -1,11 +1,14 @@
 // src/components/clients/ClientDetailModal.jsx
 import React, { useState } from 'react';
-import { XMarkIcon, PencilIcon, TrashIcon, MagnifyingGlassPlusIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, PencilIcon, TrashIcon, MagnifyingGlassPlusIcon, ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import './ClientDetailModal.css';
 import Modal from '../../common/Modal/Modal';
+import { generateClientProfilePDF } from '../../../../utils/pdfGenerator';
 
-const ClientDetailModal = ({ isOpen, onClose, clientData,handleEdit,handleDelete }) => {
+const ClientDetailModal = ({ isOpen, onClose, clientData, handleEdit, handleDelete }) => {
     const [selectedPhoto, setSelectedPhoto] = useState(null);
+    const [isDownloading, setIsDownloading] = useState(false); // Nuevo estado
+
 
     if (!clientData) {
         return null;
@@ -31,13 +34,27 @@ const ClientDetailModal = ({ isOpen, onClose, clientData,handleEdit,handleDelete
         return 'No disponible';
     };
 
-    const onEdit = (id)=>{
+    const onEdit = (id) => {
         handleEdit(id);
     }
 
-    const onDelete = (id)=>{
+    const onDelete = (id) => {
         handleDelete(id);
     }
+
+    const handleDownloadPDF = async () => {
+        setIsDownloading(true);
+
+        try {
+            await generateClientProfilePDF(clientData);
+        } catch (error) {
+            console.error("Error al generar el PDF:", error);
+            // Opcional: mostrar un mensaje de error al usuario
+        } finally {
+            // Se ejecuta tanto si la descarga fue exitosa como si falló
+            setIsDownloading(false);
+        }
+    };
 
 
     return (
@@ -47,10 +64,28 @@ const ClientDetailModal = ({ isOpen, onClose, clientData,handleEdit,handleDelete
                 <div className="modal-header">
                     <h2 className="modal-title">Perfil del cliente</h2>
                     <div className="modal-actions">
+                        
+                        <button
+                            onClick={handleDownloadPDF}
+                            className="download-pdf-button"
+                            disabled={isDownloading} // Se deshabilita el botón durante la descarga
+                        >
+                            {isDownloading ? (
+                                <>
+                                    <div className="downloading-spinner"></div>
+                                    <span>Descargando...</span>
+                                </>
+                            ) : (
+                                <>
+                                    <ArrowDownTrayIcon className="icon" />
+                                    <span>Descargar perfil</span>
+                                </>
+                            )}
+                        </button>
                         <button className="btn-edit" onClick={() => onEdit(clientData.id)}>
                             <PencilIcon className="icon" /> Editar
                         </button>
-                        <button className="btn-delete" onClick={()=> onDelete(clientData.id)}>
+                        <button className="btn-delete" onClick={() => onDelete(clientData.id)}>
                             <TrashIcon className="icon" /> Eliminar
                         </button>
                         <button className="btn-close" onClick={onClose}>
@@ -77,7 +112,7 @@ const ClientDetailModal = ({ isOpen, onClose, clientData,handleEdit,handleDelete
                             <p><strong>Ocupación:</strong> {renderValue(clientData.ocupacion)}</p>
                             <p><strong>Última visita:</strong> {renderValue(clientData.ultimaVisita)}</p>
                         </div>
-                        
+
                         {/* Fotos del Cliente */}
                         <div className="detail-section-card photos-section">
                             <h4 className="section-title">Fotos del Cliente</h4>
@@ -187,7 +222,7 @@ const ClientDetailModal = ({ isOpen, onClose, clientData,handleEdit,handleDelete
                                     <p><strong>Tiene plagiocefalia:</strong> {renderBoolean(clientData.tienePlagiosefalia)}</p>
                                 </div>
                             </div>
-                            
+
                             <h4 className="section-title mt-4">Características del Cabello</h4>
                             <div className="info-subsection-grid">
                                 <div>
